@@ -496,3 +496,4 @@ C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\win
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\win-x64\NotificationsWindow.g.cs
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\win-x64\GeneratedInternalTypeHelper.g.cs
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\win-x64\WindowsKontrolMerkezi_MarkupCompile.lref
+C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\win-x64\WindowsKontrolMerkezi.sourcelink.json

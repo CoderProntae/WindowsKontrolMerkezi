@@ -6,7 +6,7 @@ namespace WindowsKontrolMerkezi;
 /// <summary>Sürüm: önce version.txt (exe yanında), yoksa assembly, yoksa sabit. version.txt = tek gerçek kaynak.</summary>
 public static class VersionInfo
 {
-    private const string FallbackVersion = "1.2.3";
+    private const string FallbackVersion = "1.2.2";
 
     private static string ReadVersionFromFile()
     {
@@ -86,10 +86,10 @@ public static class VersionInfo
         new("Hata düzeltmeleri (XML & Padding)", "1.2.1", "2025-02-23"),
         new("Gelişmiş Self-Update (Batch Script)", "1.2.2", "2025-02-23"),
         new("Granüler Özellik Güncelleme Takibi", "1.2.2", "2025-02-23"),
-        new("Tam Tema Uyumluluğu & Titlebar Sync", "1.2.3", "2025-02-23"),
-        new("Sürüm Kodları Durum Göstergesi", "1.2.3", "2025-02-23"),
-        new("UI Cilalama (Halkalar & Bildirim Butonu)", "1.2.3", "2025-02-23"),
-        new("Mod Özelleştirme (Düzenleme Modu)", "1.2.3", "2025-02-23"),
+        new("Tam Tema Uyumluluğu & Titlebar Sync", "1.2.2", "2025-02-23"),
+        new("Sürüm Kodları Durum Göstergesi", "1.2.2", "2025-02-23"),
+        new("UI Cilalama (Halkalar & Bildirim Butonu)", "1.2.2", "2025-02-23"),
+        new("Mod Özelleştirme (Düzenleme Modu)", "1.2.2", "2025-02-23"),
     };
 }
 

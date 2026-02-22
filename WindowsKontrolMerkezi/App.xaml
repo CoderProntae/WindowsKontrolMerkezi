@@ -60,6 +60,28 @@
       <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="8,4"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Style.Resources>
+        <!-- This helps with the internal toggle button in some OS versions -->
+        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Transparent"/>
+      </Style.Resources>
+    </Style>
+
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Background" Value="{DynamicResource CardAlt}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentDim}"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Accent}"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="CheckBox">
