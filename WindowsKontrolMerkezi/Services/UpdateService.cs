@@ -95,12 +95,13 @@ public static class UpdateService
             var currentExe = Process.GetCurrentProcess().MainModule?.FileName;
             if (string.IsNullOrEmpty(currentExe)) return false;
 
-            var ext = Path.GetExtension(new Uri(downloadUrl).LocalPath);
+            var ext = Path.GetExtension(new Uri(downloadUrl).LocalPath).ToLower();
             if (string.IsNullOrEmpty(ext)) ext = ".exe";
             
             var tempDir = Path.GetTempPath();
-            var updateFile = Path.Combine(tempDir, "WKM_New_Version" + ext);
+            var updateFile = Path.Combine(tempDir, "WKM_Update_Package" + ext);
             var batchFile = Path.Combine(tempDir, "wkm_updater.bat");
+            var appDir = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
 
             using (var client = new HttpClient())
             {
@@ -109,13 +110,26 @@ public static class UpdateService
                 await File.WriteAllBytesAsync(updateFile, bytes);
             }
 
-            // Batch script: 
-            // 1. Bekle (uygulama kapansın)
-            // 2. Eski exe'yi sil
-            // 3. Yeni dosyayı eski exe ismine taşı/kopyala
-            // 4. Uygulamayı başlat
-            // 5. Kendini sil
-            var script = $@"
+            // Logic switch based on extension
+            string script;
+            if (ext == ".zip")
+            {
+                // ZIP Update:
+                // 1. Wait for process to exit
+                // 2. Use PowerShell to extract (overwrite all)
+                // 3. Start exe
+                script = $@"
+@echo off
+timeout /t 2 /nobreak > nul
+powershell -Command ""Expand-Archive -Path '{updateFile}' -DestinationPath '{appDir}' -Force""
+start """" ""{currentExe}""
+del ""{batchFile}""
+";
+            }
+            else
+            {
+                // Legacy EXE Update
+                script = $@"
 @echo off
 timeout /t 2 /nobreak > nul
 :retry
@@ -129,6 +143,8 @@ move /y ""{updateFile}"" ""{currentExe}""
 start """" ""{currentExe}""
 del ""{batchFile}""
 ";
+            }
+
             await File.WriteAllTextAsync(batchFile, script);
 
             Process.Start(new ProcessStartInfo
