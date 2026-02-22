@@ -1,7 +1,7 @@
 {
-    "version": "1.3.2",
+    "version": "1.3.3",
     "channel": "önerilir",
-    "notes": "v1.3.2: Tema Senkronizasyonu ve Git Özelliği Kaldırma.",
+    "notes": "v1.3.3: Sürüm Senkronizasyonu Fix ve Kararlılık İyileştirmeleri.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {

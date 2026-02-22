@@ -126,6 +126,7 @@ if exist ""{currentExe}"" (
     timeout /t 1 /nobreak > nul
     goto retry
 )
+if exist ""version.txt"" del /f /q ""version.txt""
 move /y ""{updateFile}"" ""{currentExe}""
 start """" ""{currentExe}""
 del ""{batchFile}""
