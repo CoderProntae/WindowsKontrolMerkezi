@@ -1,0 +1,24 @@
+{
+    "version": "1.2.3",
+    "channel": "önerilir",
+    "notes": "v1.2.3: Modernize edilmiş UI, yeni saat widget'ı ve geliştirilmiş modlar.",
+    "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
+    "features": [
+        {
+            "name": "Bildirim Butonu Yenilemesi",
+            "version": "1.2.3"
+        },
+        {
+            "name": "Canlı Saat/Tarih",
+            "version": "1.2.3"
+        },
+        {
+            "name": "Gelişmiş Mod Düzenleme",
+            "version": "1.2.3"
+        },
+        {
+            "name": "Halkalar Fixi",
+            "version": "1.2.3"
+        }
+    ]
+}

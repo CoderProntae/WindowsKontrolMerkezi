@@ -1,0 +1,114 @@
+<Window x:Class="WindowsKontrolMerkezi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows Kontrol Merkezi" Height="700" Width="1100" MinHeight="600" MinWidth="900"
+        Background="{DynamicResource Surface}">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="200"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition x:Name="ColNotifications" Width="0"/>
+    </Grid.ColumnDefinitions>
+    <!-- Sidebar -->
+    <Border Grid.Column="0" Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="0,0,1,0" Padding="16,24,16,16">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+          <TextBlock x:Name="TbClock" Text="00:00" Foreground="{DynamicResource Text}" FontSize="32" FontWeight="Bold" Margin="0,0,0,2"/>
+          <TextBlock x:Name="TbDate" Text="22 Şubat 2025" Foreground="{DynamicResource TextDim}" FontSize="12" Margin="0,0,0,20"/>
+          <TextBlock Text="Windows Kontrol Merkezi" Foreground="{DynamicResource TextDim}" FontSize="10" FontWeight="SemiBold" Margin="0,0,0,24"/>
+          <RadioButton x:Name="RbPanel" Content="Panel" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Panel"/>
+          <RadioButton x:Name="RbModlar" Content="Modlar" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Modlar"/>
+          <RadioButton x:Name="RbAyarlar" Content="Ayarlar" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Ayarlar"/>
+        </StackPanel>
+        <Border Grid.Row="2" BorderBrush="{DynamicResource Border}" BorderThickness="0,1,0,0" Padding="0,12,0,0" Margin="0,12,0,0">
+          <StackPanel>
+            <TextBlock x:Name="TbSidebarRam" Foreground="{DynamicResource TextDim}" FontSize="10" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TbSidebarOs" Foreground="{DynamicResource TextDim}" FontSize="10" TextWrapping="Wrap" Margin="0,2,0,0"/>
+            <TextBlock Text="Wintak R" Foreground="{DynamicResource Accent}" FontSize="11" FontWeight="SemiBold" Margin="0,8,0,0"/>
+            <TextBlock Text="Windows Kontrol Merkezi bir Wintak uygulamasıdır." Foreground="{DynamicResource TextDim}" FontSize="9" Margin="0,2,0,0"/>
+            <Button x:Name="BtnVersionCodes" Content="Sürüm kodları" Click="BtnVersionCodes_OnClick" Margin="0,8,0,0" Padding="8,4"
+                    Background="Transparent" Foreground="{DynamicResource Accent}" BorderBrush="{DynamicResource Border}" BorderThickness="1" Cursor="Hand" FontSize="10"/>
+            <Button x:Name="BtnUninstall" Content="Uygulama kaldır" Click="BtnUninstall_OnClick" Margin="0,4,0,0" Padding="8,4"
+                    Background="Transparent" Foreground="{DynamicResource TextDim}" BorderThickness="0" Cursor="Hand" FontSize="10"/>
+          </StackPanel>
+        </Border>
+      </Grid>
+    </Border>
+    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Padding="24">
+      <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
+    </ScrollViewer>
+
+    <!-- Notification Panel -->
+    <Border Grid.Column="2" x:Name="NotificationPanel" Background="{DynamicResource GlassBg}" BorderBrush="{DynamicResource Border}" BorderThickness="1,0,0,0">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" Padding="16" BorderBrush="{DynamicResource Border}" BorderThickness="0,0,0,1">
+          <Grid>
+            <TextBlock Text="Bildirimler" Foreground="{DynamicResource Text}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+               <Button x:Name="BtnExpandNotifications" Content="↗" Click="BtnExpandNotifications_OnClick" 
+                       Background="Transparent" Foreground="{DynamicResource TextDim}" BorderThickness="0" Cursor="Hand" Margin="0,0,8,0" Padding="4"/>
+               <Button x:Name="BtnCloseNotifications" Content="✕" Click="BtnToggleNotifications_OnClick" 
+                       Background="Transparent" Foreground="{DynamicResource TextDim}" BorderThickness="0" Cursor="Hand" Padding="4"/>
+            </StackPanel>
+          </Grid>
+        </Border>
+
+        <ListBox Grid.Row="1" x:Name="LstNotifications" Background="Transparent" BorderThickness="0" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="8">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <Border x:Name="NotifBorder" Background="{DynamicResource CardAlt}" CornerRadius="8" Padding="12" Margin="0,0,0,8" BorderBrush="{DynamicResource Border}" BorderThickness="1" Cursor="Hand" MouseLeftButtonUp="NotifItem_Click">
+                <StackPanel>
+                  <Grid>
+                    <TextBlock Text="{Binding SourceApp}" Foreground="{DynamicResource Accent}" FontSize="10" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Timestamp, StringFormat='HH:mm'}" Foreground="{DynamicResource TextDim}" FontSize="10" HorizontalAlignment="Right"/>
+                  </Grid>
+                  <TextBlock Text="{Binding Title}" Foreground="{DynamicResource Text}" FontSize="12" FontWeight="Medium" Margin="0,4,0,2" TextWrapping="Wrap"/>
+                  <TextBlock Text="{Binding Message}" Foreground="{DynamicResource TextDim}" FontSize="11" TextWrapping="Wrap" MaxHeight="40"/>
+                  <TextBlock Text="Detaylar için tıkla" Foreground="{DynamicResource Accent}" FontSize="10" Margin="0,4,0,0" Visibility="{Binding ActionUrl, Converter={StaticResource NullToVisibilityConverter}}"/>
+                </StackPanel>
+              </Border>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Grid.Row="2" Content="Tümünü Temizle" Click="BtnClearNotifications_OnClick" 
+                Margin="16" Padding="12,8" Background="Transparent" Foreground="{DynamicResource TextDim}" 
+                BorderBrush="{DynamicResource Border}" BorderThickness="1" HorizontalAlignment="Stretch" Cursor="Hand"/>
+      </Grid>
+    </Border>
+
+    <!-- Notification Toggle Overlay (Floating Button when closed) -->
+    <Button Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,24,0"
+            Height="36" Padding="12,0" Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" 
+            BorderThickness="1" Click="BtnToggleNotifications_OnClick" Cursor="Hand">
+       <Button.Template>
+         <ControlTemplate TargetType="Button">
+           <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0">
+               <TextBlock Text="🔔" FontSize="14" Margin="0,0,8,0" VerticalAlignment="Center"/>
+               <TextBlock Text="Bildirimler" Foreground="{DynamicResource Text}" FontSize="12" FontWeight="Medium" VerticalAlignment="Center"/>
+             </StackPanel>
+           </Border>
+           <ControlTemplate.Triggers>
+             <Trigger Property="IsMouseOver" Value="True">
+               <Setter TargetName="border" Property="Background" Value="{DynamicResource CardAlt}"/>
+               <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Accent}"/>
+             </Trigger>
+           </ControlTemplate.Triggers>
+         </ControlTemplate>
+       </Button.Template>
+    </Button>
+  </Grid>
+</Window>

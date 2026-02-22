@@ -1,0 +1,40 @@
+<Window x:Class="WindowsKontrolMerkezi.VersionCodesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sürüm kodları" Height="420" Width="520" MinHeight="300" MinWidth="400"
+        Background="{DynamicResource Surface}" WindowStartupLocation="CenterOwner">
+  <Grid Margin="16">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="Tüm özelliklerin sürüm ve tarih bilgisi" Foreground="{DynamicResource TextDim}" FontSize="12" Margin="0,0,0,12"/>
+    <DataGrid Grid.Row="1" x:Name="GridFeatures" AutoGenerateColumns="False" IsReadOnly="True"
+              HeadersVisibility="Column" BorderThickness="0" Background="Transparent"
+              RowBackground="{DynamicResource Card}" Foreground="{DynamicResource Text}"
+              GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{DynamicResource Border}" RowHeight="32">
+      <DataGrid.ColumnHeaderStyle>
+        <Style TargetType="DataGridColumnHeader">
+          <Setter Property="Background" Value="{DynamicResource CardAlt}"/>
+          <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>
+          <Setter Property="Padding" Value="8"/>
+          <Setter Property="FontWeight" Value="SemiBold"/>
+          <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+          <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        </Style>
+      </DataGrid.ColumnHeaderStyle>
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Özellik" Binding="{Binding Name}" Width="*" MinWidth="180"/>
+        <DataGridTextColumn Header="Mevcut Sürüm" Binding="{Binding Version}" Width="100"/>
+        <DataGridTextColumn Header="Tarih" Binding="{Binding Date}" Width="100"/>
+        <DataGridTemplateColumn Header="Durum" Width="100">
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Güncel" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</Window>
