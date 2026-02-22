@@ -1,5 +1,17 @@
 # Değişiklik Günlüğü (CHANGELOG)
 
+## [1.4.0] - 2025-02-23
+### Eklenenler
+- **Bağımsız Rahatsız Etme (v2)**: "Odak Yardımı" yerine uygulama içi sessiz bildirim sistemi getirildi. (Win11'de devre dışı)
+- **Tema Arka Planları**: Balıklar ve Lav temalarına özel görsel arka planlar entegre edildi. 🎨
+- **Buton Gizleme**: Ayarlar sekmesine "Bildirim Paneli Butonunu Gizle" ayarı eklendi.
+### Değişenler
+- **UI Düzenlemesi**: Modlar sayfasındaki "Windows Ayarları" butonu sola, başlığın yanına taşındı.
+
+## [1.3.9] - 2025-02-23
+### Değişenler
+- **Cache-Busting**: Güncelleme kontrolünde versiyon dosyasının her zaman en güncel halinin çekilmesi sağlandı.
+
 ## [1.3.8] - 2025-02-23
 ### Değişenler
 - **Tema Fix**: Temaların seçilince değişmeme sorunu kökten çözüldü.

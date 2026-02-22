@@ -3,12 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Windows Kontrol Merkezi" Height="700" Width="1100" MinHeight="600" MinWidth="900"
         Background="{DynamicResource Surface}">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="200"/>
-      <ColumnDefinition Width="*"/>
-      <ColumnDefinition x:Name="ColNotifications" Width="0"/>
-    </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <Style TargetType="Image" x:Key="BgImageStyle">
+            <Setter Property="Stretch" Value="UniformToFill"/>
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <!-- Background Image -->
+        <Image x:Name="ImgBackground" Visibility="Collapsed" Style="{StaticResource BgImageStyle}" IsHitTestVisible="False"/>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition x:Name="ColNotifications" Width="0"/>
+            </Grid.ColumnDefinitions>
     <!-- Sidebar -->
     <Border Grid.Column="0" Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="0,0,1,0" Padding="16,24,16,16">
       <Grid>
@@ -98,7 +108,7 @@
     </Border>
 
     <!-- Notification Toggle Overlay (Floating Button when closed) -->
-    <Button Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,24,0"
+    <Button x:Name="BtnFloatingNotificationToggle" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,24,0"
             Height="36" Padding="12,0" Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" 
             BorderThickness="1" Click="BtnToggleNotifications_OnClick" Cursor="Hand">
        <Button.Template>

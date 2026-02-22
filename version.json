@@ -1,7 +1,7 @@
 {
-    "version": "1.3.9",
+    "version": "1.4.0",
     "channel": "önerilir",
-    "notes": "v1.3.9: Güncelleme Sistemi Fix (Cache-Busting) ve Kararlılık.",
+    "notes": "DND Overhaul & UI Fixes: Moved settings button, added toggle to hide notification button, replaced Focus Assist with Independent DND.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {

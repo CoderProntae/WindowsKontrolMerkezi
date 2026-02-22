@@ -19,7 +19,9 @@ public partial class ModlarPage
     {
         TbPowerState.Text = PowerPlanService.GetPlans().FirstOrDefault(p => p.IsActive)?.Name ?? "—";
         TbGameModeState.Text = GameModeService.IsEnabled() ? "Açık" : "Kapalı";
-        TbFocusState.Text = FocusAssistService.GetStateLabel();
+        
+        var settings = AppSettingsService.Load();
+        TbFocusState.Text = settings.IsIndependentDndOn ? "Açık (Uygulama İçi)" : "Kapalı";
     }
 
     private void BuildModeCards()
@@ -149,7 +151,7 @@ public partial class ModlarPage
     {
         var parts = new List<string>();
         if (m.GameModeOn == true) parts.Add("Oyun modu açık");
-        if (m.FocusAssistOn == true) parts.Add("Odak yardımı açık");
+        if (m.FocusAssistOn == true) parts.Add("Rahatsız etme açık");
         if (!string.IsNullOrEmpty(m.PowerPlanGuid)) parts.Add("Güç planı seçili");
         if (m.Id == "oyun") return "Oyunlarda kaynak önceliği, Game Bar ayarları.";
         if (m.Id == "performans") return "Yüksek performans güç planı.";

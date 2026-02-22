@@ -50,6 +50,29 @@ public partial class MainWindow : Window
         
         var settings = AppSettingsService.Load();
         ThemeService.ApplyTheme(settings.ThemeId);
+        
+        // v1.4.0 Background & Toggle Fix
+        ApplyBackground(settings.ThemeId);
+        BtnFloatingNotificationToggle.Visibility = settings.HideNotificationToggleButton ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void ApplyBackground(string themeId)
+    {
+        var theme = ThemeService.Themes.FirstOrDefault(t => t.Id == themeId);
+        if (theme?.BackgroundPath != null && File.Exists(theme.BackgroundPath))
+        {
+            try
+            {
+                var bitmap = new System.Windows.Media.Imaging.BitmapImage(new Uri(theme.BackgroundPath));
+                ImgBackground.Source = bitmap;
+                ImgBackground.Visibility = Visibility.Visible;
+            }
+            catch { ImgBackground.Visibility = Visibility.Collapsed; }
+        }
+        else
+        {
+            ImgBackground.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void OnNavChecked(object sender, RoutedEventArgs e)

@@ -47,7 +47,10 @@
           </StackPanel>
 
           <TextBlock Grid.Row="3" Grid.Column="0" Text="Bildirim Paneli" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center" Margin="0,0,0,8"/>
-          <CheckBox x:Name="ChkNotifStartup" Grid.Row="3" Grid.Column="1" Content="Açılışta bildirim panelini göster" Checked="ChkNotifStartup_Changed" Unchecked="ChkNotifStartup_Changed" Foreground="{DynamicResource Text}" Margin="0,0,0,8"/>
+          <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,0,8">
+            <CheckBox x:Name="ChkOpenNotifAtStart" Content="Başlangıçta bildirim panelini aç" Foreground="{DynamicResource Text}" Margin="0,0,0,12" Checked="ChkOpenNotifAtStart_Changed" Unchecked="ChkOpenNotifAtStart_Changed"/>
+            <CheckBox x:Name="ChkHideNotifToggle" Content="Bildirim paneli butonunu gizle" Foreground="{DynamicResource Text}" Margin="0,0,0,12" Checked="ChkHideNotifToggle_Changed" Unchecked="ChkHideNotifToggle_Changed"/>
+          </StackPanel>
 
           <TextBlock Grid.Row="4" Grid.Column="0" Text="Otomatik güncelleme" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center"/>
           <CheckBox x:Name="ChkCheckUpdatesAtStartup" Grid.Row="4" Grid.Column="1" Content="Açılışta güncelleme kontrolü yap" Checked="ChkCheckUpdatesAtStartup_Changed" Unchecked="ChkCheckUpdatesAtStartup_Changed" Foreground="{DynamicResource Text}"/>

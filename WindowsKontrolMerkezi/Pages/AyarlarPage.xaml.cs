@@ -40,6 +40,7 @@ public partial class AyarlarPage
         ChkStartWithWindows.IsChecked = settings.StartWithWindows;
         ChkCheckUpdatesAtStartup.IsChecked = settings.CheckUpdatesAtStartup;
         ChkNotifStartup.IsChecked = settings.OpenNotificationPanelAtStartup;
+        ChkHideNotifToggle.IsChecked = settings.HideNotificationToggleButton;
         SldOpacity.Value = settings.WindowOpacity;
         TbOpacityVal.Text = $"%{(int)(settings.WindowOpacity * 100)}";
         
@@ -58,6 +59,20 @@ public partial class AyarlarPage
         var on = ChkSaveHistory.IsChecked == true;
         PanelPurgeSettings.Opacity = on ? 1.0 : 0.4;
         PanelPurgeSettings.IsHitTestVisible = on;
+    }
+
+    private void ChkHideNotifToggle_Changed(object sender, RoutedEventArgs e)
+    {
+        if (ChkHideNotifToggle == null) return;
+        var s = AppSettingsService.Load();
+        s.HideNotificationToggleButton = ChkHideNotifToggle.IsChecked == true;
+        AppSettingsService.Save(s);
+        
+        // Update MainWindow UI if possible
+        if (Application.Current.MainWindow is MainWindow mw)
+        {
+            mw.BtnFloatingNotificationToggle.Visibility = s.HideNotificationToggleButton ? Visibility.Collapsed : Visibility.Visible;
+        }
     }
 
     private void ChkNotifStartup_Changed(object sender, RoutedEventArgs e)

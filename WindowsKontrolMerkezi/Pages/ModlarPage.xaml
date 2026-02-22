@@ -5,13 +5,13 @@
   <StackPanel>
     <Grid Margin="0,0,0,16">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="Modlar" Foreground="{DynamicResource Text}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
-      <Button x:Name="BtnWindowsAyarlari" Grid.Column="1" Content="Windows ayarlarını aç" Click="BtnWindowsAyarlari_OnClick"
+      <Button x:Name="BtnWindowsAyarlari" Grid.Column="0" Content="⚙ Windows ayarları" Click="BtnWindowsAyarlari_OnClick"
               Background="Transparent" Foreground="{DynamicResource TextDim}" BorderBrush="{DynamicResource Border}" BorderThickness="1"
-              Padding="12,6" Cursor="Hand"/>
+              Padding="12,6" Cursor="Hand" Margin="0,0,12,0"/>
+      <TextBlock Text="Modlar" Grid.Column="1" Foreground="{DynamicResource Text}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
     </Grid>
 
     <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
@@ -32,7 +32,7 @@
             <TextBlock x:Name="TbGameModeState" Foreground="{DynamicResource Text}" FontSize="13" Text="—"/>
           </StackPanel>
           <StackPanel Grid.Column="2">
-            <TextBlock Text="Odak yardımı" Foreground="{DynamicResource TextDim}" FontSize="11"/>
+            <TextBlock Text="Rahatsız etme" Foreground="{DynamicResource TextDim}" FontSize="11"/>
             <TextBlock x:Name="TbFocusState" Foreground="{DynamicResource Text}" FontSize="13" Text="—"/>
           </StackPanel>
         </Grid>
@@ -92,7 +92,7 @@
           <TextBlock Grid.Row="1" Grid.Column="0" Text="Seçenekler" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center" Margin="0,0,0,8"/>
           <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,8">
             <CheckBox x:Name="ChkNewGameMode" Content="Oyun modu" Foreground="{DynamicResource Text}" Margin="0,0,16,0"/>
-            <CheckBox x:Name="ChkNewFocusAssist" Content="Odak yardımı" Foreground="{DynamicResource Text}" Margin="0,0,16,0"/>
+            <CheckBox x:Name="ChkNewFocusAssist" Content="Rahatsız etme" Foreground="{DynamicResource Text}" Margin="0,0,16,0"/>
             <TextBlock Text="Güç planı:" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center" Margin="0,0,8,0"/>
             <ComboBox x:Name="CmbNewPowerPlan" Width="180" VerticalAlignment="Center"/>
           </StackPanel>

@@ -59,7 +59,7 @@ namespace WindowsKontrolMerkezi {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.3.6;component/versioncodeswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.3.9;component/versioncodeswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\VersionCodesWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -20,6 +20,9 @@ public class AppSettings
     public bool SaveNotificationHistory { get; set; } = true;
     public int NotificationPurgeDays { get; set; } = 30;
     public int NotificationHistoryPurgeDays { get; set; } = 30;
+
+    // v1.4.0 Features
+    public bool HideNotificationToggleButton { get; set; } = false;
 }
 
 public static class AppSettingsService
