@@ -38,7 +38,16 @@ public partial class AyarlarPage
         SldPurgeDays.Value = settings.NotificationPurgeDays;
         TbPurgeDaysText.Text = settings.NotificationPurgeDays + " gün";
 
+        UpdatePurgePanelState();
         UpdateStartupHint();
+    }
+
+    private void UpdatePurgePanelState()
+    {
+        if (PanelPurgeSettings == null) return;
+        var on = ChkSaveHistory.IsChecked == true;
+        PanelPurgeSettings.Opacity = on ? 1.0 : 0.4;
+        PanelPurgeSettings.IsHitTestVisible = on;
     }
 
     private void ChkNotifStartup_Changed(object sender, RoutedEventArgs e)
@@ -226,6 +235,7 @@ public partial class AyarlarPage
         var s = AppSettingsService.Load();
         s.SaveNotificationHistory = ChkSaveHistory.IsChecked == true;
         AppSettingsService.Save(s);
+        UpdatePurgePanelState();
     }
 
     private void SldPurgeDays_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

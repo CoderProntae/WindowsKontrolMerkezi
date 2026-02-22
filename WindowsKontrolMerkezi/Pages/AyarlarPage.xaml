@@ -75,7 +75,7 @@
         <CheckBox x:Name="ChkSaveHistory" Content="Bildirim geçmişini kaydet (silinenler oraya gider)" 
                   Checked="ChkSaveHistory_Changed" Unchecked="ChkSaveHistory_Changed" Foreground="{DynamicResource Text}" Margin="0,0,0,12"/>
         
-        <StackPanel Margin="0,0,0,8">
+        <StackPanel x:Name="PanelPurgeSettings" Margin="0,0,0,8">
           <Grid>
              <TextBlock Text="Bildirim saklama süresi (gün)" Foreground="{DynamicResource TextDim}" FontSize="11"/>
              <TextBlock x:Name="TbPurgeDaysText" Text="30 gün" Foreground="{DynamicResource Accent}" FontSize="11" HorizontalAlignment="Right" FontWeight="SemiBold"/>

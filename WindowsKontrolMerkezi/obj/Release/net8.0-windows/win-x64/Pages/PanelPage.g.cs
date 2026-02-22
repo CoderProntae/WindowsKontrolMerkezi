@@ -147,7 +147,7 @@ namespace WindowsKontrolMerkezi.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.3.0;component/pages/panelpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.3.1;component/pages/panelpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Pages\PanelPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

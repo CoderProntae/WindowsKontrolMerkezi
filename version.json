@@ -1,7 +1,7 @@
 {
-    "version": "1.3.0",
+    "version": "1.3.1",
     "channel": "önerilir",
-    "notes": "v1.3.0: Bağımsız DND, Bildirim Kalıcılığı ve Geçmiş Yönetimi.",
+    "notes": "v1.3.1: UI/UX İyileştirmeleri ve Dinamik Ayarlar.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {

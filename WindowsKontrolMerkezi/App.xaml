@@ -25,8 +25,11 @@
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="RadioButton">
-            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Accent}" BorderThickness="2,0,0,0" Padding="{TemplateBinding Padding}">
-              <ContentPresenter/>
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Accent}" BorderThickness="3,0,0,0" Padding="{TemplateBinding Padding}" CornerRadius="0,8,8,0">
+              <Border.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+              </Border.RenderTransform>
+              <ContentPresenter VerticalAlignment="Center"/>
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsChecked" Value="True">
@@ -37,7 +40,36 @@
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="border" Property="Background" Value="#FFFFFF0A"/>
                 <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+                <Setter TargetName="border" Property="RenderTransform">
+                  <Setter.Value>
+                    <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                  </Setter.Value>
+                </Setter>
               </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style TargetType="ListBoxItem">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="Margin" Value="0,0,0,4"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListBoxItem">
+            <Border x:Name="border" Background="{TemplateBinding Background}">
+               <ContentPresenter/>
+            </Border>
+            <ControlTemplate.Triggers>
+               <Trigger Property="IsMouseOver" Value="True">
+                 <Setter TargetName="border" Property="Background" Value="#FFFFFF05"/>
+               </Trigger>
+               <Trigger Property="IsSelected" Value="True">
+                 <Setter TargetName="border" Property="Background" Value="Transparent"/>
+               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
         </Setter.Value>
