@@ -1,7 +1,7 @@
 {
     "version": "1.4.0",
     "channel": "önerilir",
-    "notes": "v1.4.0: DND Overhaul, UI Layout Fix, Theme Backgrounds and Full Sync Update.",
+    "notes": "v1.4.0 (Self-Contained): .NET hatasını çözmek için tüm çalışma zamanı bileşenleri pakete dahil edildi. Bu sürüm her sistemde sorunsuz çalışır.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/update.zip",
     "features": [
         {
