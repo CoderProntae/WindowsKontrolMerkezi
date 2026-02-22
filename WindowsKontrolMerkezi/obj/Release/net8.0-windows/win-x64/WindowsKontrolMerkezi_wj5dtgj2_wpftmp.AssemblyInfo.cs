@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WindowsKontrolMerkezi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.3.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.0+8cc6545c9c79950057a1cee0d965ddb46339867e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.0+5e0c3a50e2e212195f42b5c24103ccb17328cf02")]
 [assembly: System.Reflection.AssemblyProductAttribute("WindowsKontrolMerkezi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WindowsKontrolMerkezi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.3.0")]

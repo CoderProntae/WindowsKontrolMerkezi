@@ -1,7 +1,7 @@
 {
     "version": "1.3.0",
     "channel": "önerilir",
-    "notes": "v1.2.3: Modernize edilmiş UI, yeni saat widget'ı ve geliştirilmiş modlar.",
+    "notes": "v1.3.0: Bağımsız DND, Bildirim Kalıcılığı ve Geçmiş Yönetimi.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {
