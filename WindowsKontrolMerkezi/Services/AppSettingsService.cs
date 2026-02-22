@@ -14,6 +14,12 @@ public class AppSettings
     public string UpdateChannel { get; set; } = "önerilir";
     /// <summary>Kullanıcının eklediği modlar (yerleşikler hariç).</summary>
     public List<ModeDefinition> CustomModes { get; set; } = new();
+
+    // v1.3.0 Features
+    public bool IsIndependentDndOn { get; set; } = false;
+    public bool SaveNotificationHistory { get; set; } = true;
+    public int NotificationPurgeDays { get; set; } = 30;
+    public int NotificationHistoryPurgeDays { get; set; } = 30;
 }
 
 public static class AppSettingsService

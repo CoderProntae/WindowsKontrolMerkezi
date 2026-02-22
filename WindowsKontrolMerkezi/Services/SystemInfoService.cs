@@ -69,6 +69,17 @@ public static class SystemInfoService
         return Environment.OSVersion.VersionString;
     }
 
+    public static bool IsWindows11()
+    {
+        try
+        {
+            var desc = GetOsDescription().ToLowerInvariant();
+            if (desc.Contains("windows 11")) return true;
+            return Environment.OSVersion.Version.Build >= 22000;
+        }
+        catch { return false; }
+    }
+
     public static string GetMachineName() => Environment.MachineName;
 
     /// <summary>RAM toplam boyutu metin (örn. "16 GB").</summary>

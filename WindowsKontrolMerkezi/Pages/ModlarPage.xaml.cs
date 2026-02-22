@@ -161,6 +161,20 @@ public partial class ModlarPage
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         RefreshState();
+        var settings = AppSettingsService.Load();
+        
+        // v1.3.0 Independent DND logic
+        ChkIndependentDnd.IsChecked = settings.IsIndependentDndOn;
+        if (SystemInfoService.IsWindows11())
+        {
+            ChkIndependentDnd.IsEnabled = false;
+            // Cross out look
+            PanelWin11Warning.Visibility = Visibility.Visible;
+            CanvasStrikethrough.Visibility = Visibility.Visible;
+            // Opacity for the restricted look
+            PanelDndContent.Opacity = 0.6;
+        }
+
         CmbNewPowerPlan.ItemsSource = PowerPlanService.GetPlans();
         CmbNewPowerPlan.DisplayMemberPath = "Name";
         CmbNewPowerPlan.SelectedValuePath = "Guid";
@@ -244,6 +258,14 @@ public partial class ModlarPage
         
         AppSettingsService.Save(settings);
         BuildModeCards();
+    }
+
+    private void ChkIndependentDnd_OnChanged(object sender, RoutedEventArgs e)
+    {
+        if (ChkIndependentDnd == null) return;
+        var settings = AppSettingsService.Load();
+        settings.IsIndependentDndOn = ChkIndependentDnd.IsChecked == true;
+        AppSettingsService.Save(settings);
     }
 
     private void BtnWindowsAyarlari_OnClick(object sender, RoutedEventArgs e) => LauncherService.OpenWindowsSettings();

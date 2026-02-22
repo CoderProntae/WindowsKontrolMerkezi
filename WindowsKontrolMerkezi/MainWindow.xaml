@@ -83,9 +83,18 @@
           </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="2" Content="Tümünü Temizle" Click="BtnClearNotifications_OnClick" 
-                Margin="16" Padding="12,8" Background="Transparent" Foreground="{DynamicResource TextDim}" 
-                BorderBrush="{DynamicResource Border}" BorderThickness="1" HorizontalAlignment="Stretch" Cursor="Hand"/>
+        <Grid Grid.Row="2" Margin="16">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Button Content="Tümünü Temizle" Click="BtnClearNotifications_OnClick" 
+                  Padding="12,8" Background="Transparent" Foreground="{DynamicResource TextDim}" 
+                  BorderBrush="{DynamicResource Border}" BorderThickness="1" HorizontalAlignment="Stretch" Cursor="Hand" Margin="0,0,8,0"/>
+          <Button Grid.Column="1" Content="📜 Geçmiş" Click="BtnOpenHistory_OnClick" 
+                  Padding="12,8" Background="Transparent" Foreground="{DynamicResource Accent}" 
+                  BorderBrush="{DynamicResource Border}" BorderThickness="1" HorizontalAlignment="Stretch" Cursor="Hand"/>
+        </Grid>
       </Grid>
     </Border>
 

@@ -42,6 +42,37 @@
     <TextBlock Text="Modları uygula veya özelleştir" Foreground="{DynamicResource TextDim}" FontSize="12" Margin="0,0,0,8"/>
     <ItemsControl x:Name="ModeCardsPanel" Margin="0,0,0,16"/>
 
+    <!-- v1.3.0 Independent DND Section -->
+    <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
+      <Grid>
+        <StackPanel x:Name="PanelDndContent">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+              <TextBlock Text="Bağımsız Rahatsız Etme Modu" Foreground="{DynamicResource Text}" FontSize="14" FontWeight="SemiBold"/>
+              <TextBlock Text="Bildirimler ses/popup olmadan direkt uygulama içine kaydedilir." Foreground="{DynamicResource TextDim}" FontSize="11" Margin="0,2,0,0"/>
+            </StackPanel>
+            <CheckBox x:Name="ChkIndependentDnd" Grid.Column="1" Style="{StaticResource {x:Type CheckBox}}" VerticalAlignment="Center" Cursor="Hand" Checked="ChkIndependentDnd_OnChanged" Unchecked="ChkIndependentDnd_OnChanged"/>
+          </Grid>
+          
+          <StackPanel x:Name="PanelWin11Warning" Visibility="Collapsed" Margin="0,12,0,0">
+             <Border Height="1" Background="{DynamicResource Border}" Margin="0,0,0,12"/>
+             <TextBlock Text="⚠️ Windows 11'de bu özellik şu an desteklenmemektedir, lütfen sonraki güncellemeyi bekleyin." 
+                        Foreground="#FF5555" FontSize="11" FontWeight="Medium" TextWrapping="Wrap"/>
+          </StackPanel>
+        </StackPanel>
+
+        <!-- Strikethrough Overlay for Win11 -->
+        <Canvas x:Name="CanvasStrikethrough" Visibility="Collapsed" IsHitTestVisible="False">
+           <Line X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=PanelDndContent}" Y2="{Binding ActualHeight, ElementName=PanelDndContent}" Stroke="#88FF5555" StrokeThickness="2"/>
+           <Line X1="{Binding ActualWidth, ElementName=PanelDndContent}" Y1="0" X2="0" Y2="{Binding ActualHeight, ElementName=PanelDndContent}" Stroke="#88FF5555" StrokeThickness="2"/>
+        </Canvas>
+      </Grid>
+    </Border>
+
     <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
       <StackPanel>
         <TextBlock x:Name="TbFormTitle" Text="Özel mod ekle" Foreground="{DynamicResource Text}" FontSize="13" FontWeight="Medium" Margin="0,0,0,8"/>

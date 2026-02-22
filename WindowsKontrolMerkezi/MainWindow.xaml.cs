@@ -97,6 +97,13 @@ public partial class MainWindow : Window
         NotificationService.ClearAll();
     }
 
+    private void BtnOpenHistory_OnClick(object sender, RoutedEventArgs e)
+    {
+        var win = new NotificationsWindow { Owner = this };
+        win.Show();
+        win.LoadHistory(); // This will be a new method in NotificationsWindow
+    }
+
     private void NotifItem_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (sender is FrameworkElement fe && fe.DataContext is Models.NotificationModel notif)

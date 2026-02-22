@@ -67,6 +67,30 @@
       </StackPanel>
     </Border>
 
+    <!-- Bildirim ve Geçmiş Ayarları (v1.3.0) -->
+    <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
+      <StackPanel>
+        <TextBlock Text="Bildirim ve Geçmiş Ayarları" Foreground="{DynamicResource Text}" FontSize="13" FontWeight="Medium" Margin="0,0,0,12"/>
+        
+        <CheckBox x:Name="ChkSaveHistory" Content="Bildirim geçmişini kaydet (silinenler oraya gider)" 
+                  Checked="ChkSaveHistory_Changed" Unchecked="ChkSaveHistory_Changed" Foreground="{DynamicResource Text}" Margin="0,0,0,12"/>
+        
+        <StackPanel Margin="0,0,0,8">
+          <Grid>
+             <TextBlock Text="Bildirim saklama süresi (gün)" Foreground="{DynamicResource TextDim}" FontSize="11"/>
+             <TextBlock x:Name="TbPurgeDaysText" Text="30 gün" Foreground="{DynamicResource Accent}" FontSize="11" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+          </Grid>
+          <Slider x:Name="SldPurgeDays" Minimum="1" Maximum="90" Value="30" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,6,0,0" ValueChanged="SldPurgeDays_ValueChanged"/>
+        </StackPanel>
+
+        <TextBlock Text="Bildirimler ve geçmişteki kayıtlar belirlenen süre sonunda otomatik olarak temizlenir. Geçmişten silinme süresi de aynıdır." 
+                   Foreground="{DynamicResource TextDim}" FontSize="10" TextWrapping="Wrap" Opacity="0.7"/>
+        
+        <Button x:Name="BtnClearHistory" Content="Geçmişi şimdi temizle" Click="BtnClearHistory_OnClick" Margin="0,12,0,0" Padding="12,6"
+                Background="Transparent" Foreground="#FF5555" BorderBrush="#FF5555" BorderThickness="1" HorizontalAlignment="Left" Cursor="Hand"/>
+      </StackPanel>
+    </Border>
+
     <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
       <StackPanel>
         <TextBlock Text="Bakım" Foreground="{DynamicResource Text}" FontSize="13" FontWeight="Medium" Margin="0,0,0,8"/>

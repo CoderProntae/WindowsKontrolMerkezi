@@ -34,3 +34,7 @@ C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\ref
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\WindowsKontrolMerkezi.pdb
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\WindowsKontrolMerkezi.genruntimeconfig.cache
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\ref\WindowsKontrolMerkezi.dll
+C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\NotificationsWindow.baml
+C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\NotificationsWindow.g.cs
+C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\obj\Release\net8.0-windows\WindowsKontrolMerkezi_MarkupCompile.lref

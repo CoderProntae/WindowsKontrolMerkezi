@@ -15,41 +15,68 @@
             <TextBlock Text="Tüm uygulama bildirimleri ve sistem uyarıları" Foreground="{DynamicResource TextDim}" FontSize="14" Margin="0,4,0,0"/>
         </StackPanel>
 
-        <DataGrid Grid.Row="1" x:Name="DgNotifications" Background="Transparent" BorderBrush="{DynamicResource Border}" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" RowBackground="{DynamicResource Card}" 
-                  Foreground="{DynamicResource Text}" BorderThickness="1" GridLinesVisibility="None" Padding="8">
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="{DynamicResource CardAlt}"/>
-                    <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>
-                    <Setter Property="Padding" Value="10,8"/>
-                    <Setter Property="FontWeight" Value="SemiBold"/>
-                    <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
-                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Tarih/Saat" Binding="{Binding Timestamp, StringFormat='dd.MM.yyyy HH:mm'}" Width="150"/>
-                <DataGridTextColumn Header="Kaynak" Binding="{Binding SourceApp}" Width="120">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="{DynamicResource Accent}"/>
+        <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0">
+            <TabItem Header="Aktif Bildirimler" Foreground="{DynamicResource Text}">
+                <DataGrid x:Name="DgNotifications" Background="Transparent" BorderBrush="{DynamicResource Border}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" RowBackground="{DynamicResource Card}" 
+                          Foreground="{DynamicResource Text}" BorderThickness="1" GridLinesVisibility="None" Padding="8">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{DynamicResource CardAlt}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>
+                            <Setter Property="Padding" Value="10,8"/>
                             <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
                         </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Başlık" Binding="{Binding Title}" Width="200"/>
-                <DataGridTextColumn Header="Mesaj" Binding="{Binding Message}" Width="*"/>
-                <DataGridTemplateColumn Header="İşlem" Width="100">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Git" Click="BtnGo_OnClick" Visibility="{Binding ActionUrl, Converter={StaticResource NullToVisibilityConverter}}"
-                                    Background="Transparent" Foreground="{DynamicResource Accent}" BorderThickness="0" Cursor="Hand" FontWeight="Bold"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tarih/Saat" Binding="{Binding Timestamp, StringFormat='dd.MM.yyyy HH:mm'}" Width="150"/>
+                        <DataGridTextColumn Header="Kaynak" Binding="{Binding SourceApp}" Width="120">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource Accent}"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Başlık" Binding="{Binding Title}" Width="200"/>
+                        <DataGridTextColumn Header="Mesaj" Binding="{Binding Message}" Width="*"/>
+                        <DataGridTemplateColumn Header="İşlem" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Git" Click="BtnGo_OnClick" Visibility="{Binding ActionUrl, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Background="Transparent" Foreground="{DynamicResource Accent}" BorderThickness="0" Cursor="Hand" FontWeight="Bold"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            
+            <TabItem x:Name="TabHistory" Header="📜 Geçmiş" Foreground="{DynamicResource Text}">
+                <DataGrid x:Name="DgHistory" Background="Transparent" BorderBrush="{DynamicResource Border}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" RowBackground="{DynamicResource CardAlt}" 
+                          Foreground="{DynamicResource TextDim}" BorderThickness="1" GridLinesVisibility="None" Padding="8">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{DynamicResource Card}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>
+                            <Setter Property="Padding" Value="10,8"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Silinme Tarihi" Binding="{Binding Timestamp, StringFormat='dd.MM.yyyy HH:mm'}" Width="150"/>
+                        <DataGridTextColumn Header="Kaynak" Binding="{Binding SourceApp}" Width="120"/>
+                        <DataGridTextColumn Header="Başlık" Binding="{Binding Title}" Width="200"/>
+                        <DataGridTextColumn Header="Mesaj" Binding="{Binding Message}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,24,0,0">
             <Button Content="Tümünü Temizle" Click="BtnClear_OnClick" Padding="16,8" Margin="0,0,12,0" 

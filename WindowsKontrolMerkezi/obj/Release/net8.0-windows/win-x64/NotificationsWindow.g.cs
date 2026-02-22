@@ -59,7 +59,7 @@ namespace WindowsKontrolMerkezi {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.2.2;component/notificationswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.2.3;component/notificationswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\NotificationsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

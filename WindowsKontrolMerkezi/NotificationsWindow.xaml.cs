@@ -9,10 +9,17 @@ public partial class NotificationsWindow : Window
     {
         InitializeComponent();
         DgNotifications.ItemsSource = NotificationService.Notifications;
+        DgHistory.ItemsSource = NotificationService.GetHistory();
         
         var settings = AppSettingsService.Load();
         var theme = ThemeService.Themes.FirstOrDefault(t => t.Id == settings.ThemeId) ?? ThemeService.Themes[0];
         ThemeService.SetTitlebarMode(this, theme);
+    }
+
+    public void LoadHistory()
+    {
+        // Switch to history tab
+        TabHistory.IsSelected = true;
     }
 
     private void BtnClose_OnClick(object sender, RoutedEventArgs e)
