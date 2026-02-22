@@ -1,7 +1,7 @@
 {
-    "version": "1.3.6",
+    "version": "1.3.7",
     "channel": "önerilir",
-    "notes": "v1.3.6: Evrensel Güncelleme Sistemi (ZIP/Multi-file desteği) ve Kararlılık.",
+    "notes": "v1.3.7: Küçük Güncelleme - CHANGELOG Görünüm Fix ve Kararlılık.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {

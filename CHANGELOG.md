@@ -1,5 +1,10 @@
 # Değişiklik Günlüğü (CHANGELOG)
 
+## [1.3.7] - 2025-02-23
+### Değişenler
+- **Görünüm Fix**: Değişiklik günlüğündeki (Changelog) HTML kodlarının ham metin olarak görünmesi sorunu düzeltildi.
+- **Küçük Güncelleme Amaçlı**: Sistem senkronizasyonu güçlendirildi.
+
 ## [1.3.6] - 2025-02-23
 ### Eklenenler
 - **Evrensel Güncelleme Sistemi**: Artık `.zip` paketleri üzerinden tüm uygulama dosyaları (`CHANGELOG.md`, `version.txt` vb.) tek seferde güncellenebiliyor.
@@ -28,7 +33,7 @@
 - **Görsel İyileştirmeler**: Panel kaydırma çubukları ve düğmeler tema renklerine senkronize edildi.
 
 ### Kaldırılanlar
-- <span style="text-decoration: underline; color: red;">"Git" özelliği artık desteklenmiyor</span>
+- !!! "Git" özelliği artık desteklenmiyor !!!
 
 ---
 
