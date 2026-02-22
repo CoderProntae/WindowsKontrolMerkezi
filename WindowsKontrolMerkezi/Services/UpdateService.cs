@@ -72,9 +72,7 @@ public static class UpdateService
                 NotificationService.AddNotification(
                     "Yeni Güncelleme Mevcut", 
                     $"Sürüm {latest} ({channel}) indirilebilir.{featureText}",
-                    "Güncelleme Servisi",
-                    "page:Ayarlar",
-                    "Detaylara Git"
+                    "Güncelleme Servisi"
                 );
             }
 
