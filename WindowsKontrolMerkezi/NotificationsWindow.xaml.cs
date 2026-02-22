@@ -29,6 +29,14 @@ public partial class NotificationsWindow : Window
 
     private void BtnClear_OnClick(object sender, RoutedEventArgs e)
     {
-        NotificationService.ClearAll();
+        if (TabHistory.IsSelected)
+        {
+            NotificationService.ClearHistory();
+            DgHistory.ItemsSource = NotificationService.GetHistory();
+        }
+        else
+        {
+            NotificationService.ClearAll();
+        }
     }
 }

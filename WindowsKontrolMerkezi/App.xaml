@@ -190,6 +190,27 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
+    <!-- v1.3.5 Deep Sync: Global ScrollViewer & Grouping -->
+    <Style TargetType="ScrollViewer">
+        <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+        <Style.Resources>
+            <Style TargetType="ScrollBar" BasedOn="{StaticResource {x:Type ScrollBar}}"/>
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="GroupItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupItem">
+                    <StackPanel>
+                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ItemsPresenter Margin="0,0,0,4" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="TabItem">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>

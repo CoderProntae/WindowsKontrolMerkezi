@@ -215,6 +215,26 @@ public static class NotificationService
         });
     }
 
+    public static void ClearHistory()
+    {
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            try
+            {
+                if (!File.Exists(FilePath)) return;
+                
+                var json = File.ReadAllText(FilePath);
+                var list = JsonSerializer.Deserialize<List<NotificationModel>>(json) ?? new();
+                
+                // Remove all that are marked as deleted (history)
+                var activeOnly = list.Where(x => !x.IsDeleted).ToList();
+                
+                File.WriteAllText(FilePath, JsonSerializer.Serialize(activeOnly, new JsonSerializerOptions { WriteIndented = true }));
+            }
+            catch { }
+        });
+    }
+
     public static List<NotificationModel> GetHistory()
     {
         try

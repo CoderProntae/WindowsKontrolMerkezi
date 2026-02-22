@@ -22,11 +22,21 @@ public partial class AyarlarPage
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CHANGELOG.md");
         TbChangelog.Text = File.Exists(path) ? File.ReadAllText(path) : "CHANGELOG.md bulunamadı.";
 
-        CmbTheme.ItemsSource = ThemeService.Themes;
+        // Group themes for ComboBox
+        var groupedThemes = ThemeService.Themes
+            .Select(t => new { t.Id, t.Name, Group = t.Name.Contains("(Özel)") ? "Özel Temalar" : "Standart Temalar" })
+            .ToList();
+            
+        var view = System.Windows.Data.CollectionViewSource.GetDefaultView(groupedThemes);
+        view.GroupDescriptions.Add(new System.Windows.Data.PropertyGroupDescription("Group"));
+        
+        CmbTheme.ItemsSource = view;
         CmbTheme.DisplayMemberPath = "Name";
         CmbTheme.SelectedValuePath = "Id";
+        
         var settings = AppSettingsService.Load();
-        CmbTheme.SelectedItem = ThemeService.Themes.FirstOrDefault(t => t.Id == settings.ThemeId) ?? ThemeService.Themes[0];
+        CmbTheme.SelectedValue = settings.ThemeId;
+        
         ChkStartWithWindows.IsChecked = settings.StartWithWindows;
         ChkCheckUpdatesAtStartup.IsChecked = settings.CheckUpdatesAtStartup;
         ChkNotifStartup.IsChecked = settings.OpenNotificationPanelAtStartup;

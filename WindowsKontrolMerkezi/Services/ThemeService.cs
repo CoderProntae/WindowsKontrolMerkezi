@@ -19,6 +19,9 @@ public static class ThemeService
         new("green", "Yeşil", ColorFromHex("#0D1117"), ColorFromHex("#161B22"), ColorFromHex("#1F242C"), ColorFromHex("#21262D"), ColorFromHex("#22C55E"), ColorFromHex("#15803D"), ColorFromHex("#E6EDF3"), ColorFromHex("#8B949E"), true),
         new("orange", "Turuncu", ColorFromHex("#1C1917"), ColorFromHex("#292524"), ColorFromHex("#44403C"), ColorFromHex("#57534E"), ColorFromHex("#F97316"), ColorFromHex("#C2410C"), ColorFromHex("#FAFAF9"), ColorFromHex("#A8A29E"), true),
         new("rose", "Pembe", ColorFromHex("#1C1917"), ColorFromHex("#292524"), ColorFromHex("#44403C"), ColorFromHex("#57534E"), ColorFromHex("#F43F5E"), ColorFromHex("#BE123C"), ColorFromHex("#FAFAF9"), ColorFromHex("#A8A29E"), true),
+        new("fish", "🐠 Balıklar (Özel)", ColorFromHex("#041B2D"), ColorFromHex("#062841"), ColorFromHex("#093A5E"), ColorFromHex("#0D4D7A"), ColorFromHex("#00D2FF"), ColorFromHex("#0095B6"), ColorFromHex("#E0F7FA"), ColorFromHex("#81D4FA"), true),
+        new("lava", "🌋 Lav (Özel)", ColorFromHex("#120000"), ColorFromHex("#1A0000"), ColorFromHex("#2A0000"), ColorFromHex("#3A0000"), ColorFromHex("#FF4500"), ColorFromHex("#B22222"), ColorFromHex("#FFF5F5"), ColorFromHex("#FFBABA"), true),
+        new("sunset", "🌅 Gün Batımı (Özel)", ColorFromHex("#1A0B2E"), ColorFromHex("#2D144A"), ColorFromHex("#4A1F6E"), ColorFromHex("#632B94"), ColorFromHex("#FF7E5F"), ColorFromHex("#FEB47B"), ColorFromHex("#FFF1F1"), ColorFromHex("#FFD1D1"), true),
     };
 
     private static Color ColorFromHex(string hex)
