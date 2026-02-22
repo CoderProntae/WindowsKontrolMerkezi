@@ -42,14 +42,6 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Başlık" Binding="{Binding Title}" Width="200"/>
                         <DataGridTextColumn Header="Mesaj" Binding="{Binding Message}" Width="*"/>
-                        <DataGridTemplateColumn Header="İşlem" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Git" Click="BtnGo_OnClick" Visibility="{Binding ActionUrl, Converter={StaticResource NullToVisibilityConverter}}"
-                                            Background="Transparent" Foreground="{DynamicResource Accent}" BorderThickness="0" Cursor="Hand" FontWeight="Bold"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

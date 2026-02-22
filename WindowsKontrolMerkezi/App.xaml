@@ -120,5 +120,30 @@
         <Setter Property="Foreground" Value="{DynamicResource Text}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
+
+    <!-- v1.3.2 Theme Sync: ScrollBar & Selections -->
+    <Style TargetType="ScrollBar">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="8"/>
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="Background" Value="Transparent"/>
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{Binding Source={StaticResource Accent}, Path=Color}"/>
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource Border}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource Border}"/>
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#4C1D95"/> <!-- AccentDim -->
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#2A2A2E"/>
+        </Style.Resources>
+    </Style>
   </Application.Resources>
 </Application>

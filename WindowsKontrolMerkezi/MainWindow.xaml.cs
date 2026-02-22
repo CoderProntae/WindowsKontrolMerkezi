@@ -108,26 +108,6 @@ public partial class MainWindow : Window
     {
         if (sender is FrameworkElement fe && fe.DataContext is Models.NotificationModel notif)
         {
-            // Show details or navigate
-            if (!string.IsNullOrEmpty(notif.ActionUrl))
-            {
-                if (notif.ActionUrl.StartsWith("ms-settings:"))
-                {
-                    try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(notif.ActionUrl) { UseShellExecute = true }); } catch { }
-                }
-                else if (notif.ActionUrl.StartsWith("page:"))
-                {
-                    var page = notif.ActionUrl.Substring(5);
-                    var uri = page switch
-                    {
-                        "Ayarlar" => "Pages/AyarlarPage.xaml",
-                        "Modlar" => "Pages/ModlarPage.xaml",
-                        _ => "Pages/PanelPage.xaml"
-                    };
-                    ContentFrame.Navigate(new Uri(uri, UriKind.Relative));
-                }
-            }
-            
             // Show message box with details
             MessageBox.Show($"{notif.Message}\n\nKaynak: {notif.SourceApp}\nTarih: {notif.Timestamp:dd.MM.yyyy HH:mm}", notif.Title, MessageBoxButton.OK, MessageBoxImage.Information);
         }

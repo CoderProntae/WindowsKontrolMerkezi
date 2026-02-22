@@ -8,8 +8,6 @@ public record NotificationModel(
     string Message,
     string SourceApp,
     DateTime Timestamp,
-    string? ActionUrl = null,
-    string? ActionText = null,
     bool IsDeleted = false,
     bool IsRead = false,
     DateTime? ExpiryDate = null

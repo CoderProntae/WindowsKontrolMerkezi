@@ -104,7 +104,7 @@ public static class NotificationService
         catch { }
     }
 
-    public static void AddNotification(string title, string message, string source = "Sistem", string? actionUrl = null, string? actionText = null)
+    public static void AddNotification(string title, string message, string source = "Sistem")
     {
         var settings = AppSettingsService.Load();
         
@@ -114,8 +114,6 @@ public static class NotificationService
             message,
             source,
             DateTime.Now,
-            actionUrl,
-            actionText,
             IsDeleted: false,
             IsRead: false,
             ExpiryDate: DateTime.Now.AddDays(settings.NotificationPurgeDays)

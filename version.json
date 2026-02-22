@@ -1,7 +1,7 @@
 {
-    "version": "1.3.1",
+    "version": "1.3.2",
     "channel": "önerilir",
-    "notes": "v1.3.1: UI/UX İyileştirmeleri ve Dinamik Ayarlar.",
+    "notes": "v1.3.2: Tema Senkronizasyonu ve Git Özelliği Kaldırma.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {

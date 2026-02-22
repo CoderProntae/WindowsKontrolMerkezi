@@ -76,7 +76,6 @@
                   </Grid>
                   <TextBlock Text="{Binding Title}" Foreground="{DynamicResource Text}" FontSize="12" FontWeight="Medium" Margin="0,4,0,2" TextWrapping="Wrap"/>
                   <TextBlock Text="{Binding Message}" Foreground="{DynamicResource TextDim}" FontSize="11" TextWrapping="Wrap" MaxHeight="40"/>
-                  <TextBlock Text="Detaylar için tıkla" Foreground="{DynamicResource Accent}" FontSize="10" Margin="0,4,0,0" Visibility="{Binding ActionUrl, Converter={StaticResource NullToVisibilityConverter}}"/>
                 </StackPanel>
               </Border>
             </DataTemplate>

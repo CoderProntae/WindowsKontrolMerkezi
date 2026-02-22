@@ -31,28 +31,4 @@ public partial class NotificationsWindow : Window
     {
         NotificationService.ClearAll();
     }
-
-    private void BtnGo_OnClick(object sender, RoutedEventArgs e)
-    {
-        if (sender is FrameworkElement fe && fe.DataContext is Models.NotificationModel notif)
-        {
-            if (!string.IsNullOrEmpty(notif.ActionUrl))
-            {
-                try
-                {
-                    if (notif.ActionUrl.StartsWith("ms-settings:"))
-                    {
-                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(notif.ActionUrl) { UseShellExecute = true });
-                    }
-                    else if (notif.ActionUrl.StartsWith("page:"))
-                    {
-                        // Note: This requires access to MainWindow's Frame. 
-                        // In a real app, you'd use a navigation service or event.
-                        // For simplicity, we assume the user will navigate from the main side panel.
-                    }
-                }
-                catch { }
-            }
-        }
-    }
 }
