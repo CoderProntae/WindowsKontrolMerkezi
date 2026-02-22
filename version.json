@@ -1,8 +1,8 @@
 {
     "version": "1.4.0",
     "channel": "önerilir",
-    "notes": "DND Overhaul & UI Fixes: Moved settings button, added toggle to hide notification button, replaced Focus Assist with Independent DND.",
-    "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
+    "notes": "v1.4.0: DND Overhaul, UI Layout Fix, Theme Backgrounds and Full Sync Update.",
+    "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/update.zip",
     "features": [
         {
             "name": "Bildirim Butonu Yenilemesi",
