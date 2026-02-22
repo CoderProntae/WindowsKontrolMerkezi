@@ -136,6 +136,7 @@ del ""{batchFile}""
             {
                 FileName = "cmd.exe",
                 Arguments = $"/c \"\"{batchFile}\"\"",
+                Verb = "runas",
                 CreateNoWindow = true,
                 UseShellExecute = true
             });
