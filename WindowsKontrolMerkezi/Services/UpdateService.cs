@@ -42,7 +42,10 @@ public static class UpdateService
         {
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(8);
-            var json = await client.GetStringAsync(ManifestUrl);
+            
+            // Cache busting
+            var urlWithCacheBust = ManifestUrl + "?t=" + DateTime.Now.Ticks;
+            var json = await client.GetStringAsync(urlWithCacheBust);
             var doc = System.Text.Json.JsonDocument.Parse(json);
             var root = doc.RootElement;
             var latest = root.TryGetProperty("version", out var v) ? v.GetString() ?? current : current;

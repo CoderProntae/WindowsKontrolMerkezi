@@ -6,7 +6,7 @@ namespace WindowsKontrolMerkezi;
 /// <summary>Sürüm: önce version.txt (exe yanında), yoksa assembly, yoksa sabit. version.txt = tek gerçek kaynak.</summary>
 public static class VersionInfo
 {
-    private const string FallbackVersion = "1.3.8";
+    private const string FallbackVersion = "1.3.9";
 
     private static string ReadVersionFromFile()
     {
@@ -104,6 +104,7 @@ public static class VersionInfo
         new("Evrensel Güncelleme Sistemi (ZIP/Multi-file)", "1.3.6", "2025-02-23"),
         new("Görünüm Fix (Küçük Güncelleme)", "1.3.7", "2025-02-23"),
         new("Tema Seçimi Fix & Kararlılık", "1.3.8", "2025-02-23"),
+        new("Güncelleme Sistemi Fix (Cache Busting)", "1.3.9", "2025-02-23"),
     };
 }
 

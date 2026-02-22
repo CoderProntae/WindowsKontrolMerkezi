@@ -1,7 +1,7 @@
 {
-    "version": "1.3.8",
+    "version": "1.3.9",
     "channel": "önerilir",
-    "notes": "v1.3.8: Tema Seçimi Fix (Çalışmama sorunu giderildi) ve Hotfix.",
+    "notes": "v1.3.9: Güncelleme Sistemi Fix (Cache-Busting) ve Kararlılık.",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {
