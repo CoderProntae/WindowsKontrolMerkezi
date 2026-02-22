@@ -78,10 +78,11 @@ public partial class AyarlarPage
 
     private void CmbTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (CmbTheme.SelectedItem is not ThemeDef t) return;
-        ThemeService.ApplyTheme(t.Id);
+        if (CmbTheme.SelectedValue is not string themeId) return;
+        
+        ThemeService.ApplyTheme(themeId);
         var s = AppSettingsService.Load();
-        s.ThemeId = t.Id;
+        s.ThemeId = themeId;
         AppSettingsService.Save(s);
     }
 

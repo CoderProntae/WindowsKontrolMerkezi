@@ -1,5 +1,10 @@
 # Değişiklik Günlüğü (CHANGELOG)
 
+## [1.3.8] - 2025-02-23
+### Değişenler
+- **Tema Fix**: Temaların seçilince değişmeme sorunu kökten çözüldü.
+- **Kararlılık**: Küçük kod iyileştirmeleri yapıldı.
+
 ## [1.3.7] - 2025-02-23
 ### Değişenler
 - **Görünüm Fix**: Değişiklik günlüğündeki (Changelog) HTML kodlarının ham metin olarak görünmesi sorunu düzeltildi.
