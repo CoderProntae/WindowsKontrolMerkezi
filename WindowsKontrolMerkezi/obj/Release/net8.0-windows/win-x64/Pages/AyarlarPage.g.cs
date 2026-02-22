@@ -235,7 +235,7 @@ namespace WindowsKontrolMerkezi.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.3.3;component/pages/ayarlarpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WindowsKontrolMerkezi;V1.3.4;component/pages/ayarlarpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Pages\AyarlarPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

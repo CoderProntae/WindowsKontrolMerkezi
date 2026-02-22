@@ -189,8 +189,29 @@ public static class NotificationService
     {
         App.Current.Dispatcher.Invoke(() =>
         {
-            Notifications.Clear();
-            SaveNotifications();
+            try
+            {
+                var fullList = new List<NotificationModel>();
+                if (File.Exists(FilePath))
+                {
+                    var json = File.ReadAllText(FilePath);
+                    fullList = JsonSerializer.Deserialize<List<NotificationModel>>(json) ?? new();
+                }
+
+                // Mark currently active ones as deleted
+                foreach (var active in Notifications)
+                {
+                    var index = fullList.FindIndex(x => x.Id == active.Id);
+                    if (index >= 0)
+                    {
+                        fullList[index] = fullList[index] with { IsDeleted = true };
+                    }
+                }
+
+                File.WriteAllText(FilePath, JsonSerializer.Serialize(fullList, new JsonSerializerOptions { WriteIndented = true }));
+                Notifications.Clear();
+            }
+            catch { Notifications.Clear(); }
         });
     }
 

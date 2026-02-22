@@ -6,7 +6,7 @@ namespace WindowsKontrolMerkezi;
 /// <summary>Sürüm: önce version.txt (exe yanında), yoksa assembly, yoksa sabit. version.txt = tek gerçek kaynak.</summary>
 public static class VersionInfo
 {
-    private const string FallbackVersion = "1.3.3";
+    private const string FallbackVersion = "1.3.4";
 
     private static string ReadVersionFromFile()
     {
@@ -98,6 +98,7 @@ public static class VersionInfo
         new("Tema Senkronizasyonu (Scrollbar & Selection)", "1.3.2", "2025-02-23"),
         new("Sistem Kararlılığı & Git Temizliği", "1.3.2", "2025-02-23"),
         new("Sürüm Senkronizasyonu (Update Fix)", "1.3.3", "2025-02-23"),
+        new("Derin Tema Senkronizasyonu & History Fix", "1.3.4", "2025-02-23"),
     };
 }
 

@@ -1,7 +1,7 @@
 {
-    "version": "1.3.3",
+    "version": "1.3.4",
     "channel": "önerilir",
-    "notes": "v1.3.3: Sürüm Senkronizasyonu Fix ve Kararlılık İyileştirmeleri.",
+    "notes": "v1.3.4: Bildirim Geçmişi Fix ve Derin Tema Senkronizasyonu (Koyu Scrollbar).",
     "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/WindowsKontrolMerkezi.exe",
     "features": [
         {

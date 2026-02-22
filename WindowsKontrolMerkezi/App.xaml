@@ -121,11 +121,59 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
-    <!-- v1.3.2 Theme Sync: ScrollBar & Selections -->
+    <!-- v1.3.4 Deep Theme Sync: ScrollBar Overhaul -->
     <Style TargetType="ScrollBar">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Width" Value="8"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="Transparent">
+                        <Border BorderBrush="{DynamicResource Border}" BorderThickness="0" Background="Transparent"/>
+                        <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsEnabled}">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate TargetType="RepeatButton">
+                                            <Border Background="Transparent" />
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}">
+                                    <RepeatButton.Template>
+                                        <ControlTemplate TargetType="RepeatButton">
+                                            <Border Background="Transparent" />
+                                        </ControlTemplate>
+                                    </RepeatButton.Template>
+                                </RepeatButton>
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Template>
+                                        <ControlTemplate TargetType="Thumb">
+                                            <Border CornerRadius="5" Background="{DynamicResource Border}" Margin="2,0" 
+                                                    Opacity="0.6" x:Name="thumbBorder"/>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter TargetName="thumbBorder" Property="Background" Value="{DynamicResource Accent}"/>
+                                                    <Setter TargetName="thumbBorder" Property="Opacity" Value="1"/>
+                                                </Trigger>
+                                                <Trigger Property="IsDragging" Value="true">
+                                                    <Setter TargetName="thumbBorder" Property="Background" Value="{DynamicResource Accent}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="Slider">
@@ -135,15 +183,60 @@
         </Style.Resources>
     </Style>
 
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="{DynamicResource CardAlt}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
+        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{DynamicResource Border}"/>
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource Border}"/>
         <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource Border}"/>
+        <Setter Property="RowBackground" Value="Transparent"/>
+        <Setter Property="AlternatingRowBackground" Value="#05FFFFFF"/>
         <Style.Resources>
-            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#4C1D95"/> <!-- AccentDim -->
-            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#2A2A2E"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#304C1D95"/> <!-- Semi-transparent AccentDim -->
+            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#15FFFFFF"/>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="White"/>
         </Style.Resources>
+    </Style>
+
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style TargetType="TabItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextDim}"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Accent}" BorderThickness="0,0,0,2" Margin="0,0,10,0">
+                        <ContentPresenter x:Name="contentPresenter" ContentSource="Header" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource Accent}"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="0,0,0,2"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="border" Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource Text}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
   </Application.Resources>
 </Application>

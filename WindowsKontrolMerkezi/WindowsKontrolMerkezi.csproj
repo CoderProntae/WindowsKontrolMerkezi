@@ -5,9 +5,9 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>WindowsKontrolMerkezi</AssemblyName>
     <RootNamespace>WindowsKontrolMerkezi</RootNamespace>
-    <Version>1.3.3</Version>
-    <AssemblyVersion>1.3.3</AssemblyVersion>
-    <FileVersion>1.3.3</FileVersion>
+    <Version>1.3.4</Version>
+    <AssemblyVersion>1.3.4</AssemblyVersion>
+    <FileVersion>1.3.4</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
