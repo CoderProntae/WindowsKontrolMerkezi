@@ -51,6 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update manifest
+        shell: bash
         run: |
           version=${{ github.ref_name }}
           version=${version#v}
