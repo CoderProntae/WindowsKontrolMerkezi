@@ -37,19 +37,9 @@ jobs:
           name: ${{ github.ref_name }}
           body: |
             Release ${{ github.ref_name }}
+          files: release.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload artifact
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: WindowsKontrolMerkezi.zip
-          body: |
-            Binary release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # the action above uploads the release asset automatically if you use `files` input
 
       - name: Update manifest
         run: |
