@@ -64,7 +64,15 @@ jobs:
           git fetch origin main
           # ensure workspace matches remote to avoid checkout conflicts
           git reset --hard origin/main
-          git add version.json
-          git commit -m "Update version.json for $version"
-          git push
+          # remove any leftover artifacts (zip etc.)
+          git clean -fdx
+
+          # only commit if version.json actually changed
+          if git diff --quiet -- version.json; then
+            echo "version.json unchanged, skipping commit"
+          else
+            git add version.json
+            git commit -m "Update version.json for $version"
+            git push
+          fi
 
