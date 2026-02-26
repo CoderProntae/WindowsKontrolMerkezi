@@ -1,10 +1,14 @@
 {
-  "version": "1.4.0",
+  "version": "1.4.3",
   "notes": "",
   "changelog": "",
-  "downloadUrl": "https://github.com/<owner>/<repo>/releases/download/v1.4.0/WindowsKontrolMerkezi.zip",
+  "downloadUrl": "https://github.com/CoderProntae/WindowsKontrolMerkezi/releases/download/v1.4.3/WindowsKontrolMerkezi.zip",
   "channel": "önerilir",
   "features": [
-    { "name": "Placeholder", "version": "1.4.0" }
-  ]
+    {
+      "name": "Placeholder",
+      "version": "1.4.0"
+    }
+  ],
+  "hash": "3094EC3F2116E0AE13A394BEB83E007EFE5CD33F28B92AE9CD05EB8893CD0FE5"
 }
