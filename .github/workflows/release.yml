@@ -37,7 +37,7 @@ jobs:
 
       - name: Create zip
         run: |
-          powershell -Command "Compress-Archive -Path publish/* -DestinationPath release.zip"
+          powershell -Command "Compress-Archive -Path publish/* -DestinationPath WindowsKontrolMerkezi.zip"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
@@ -46,7 +46,7 @@ jobs:
           name: ${{ github.ref_name }}
           body: |
             Release ${{ github.ref_name }}
-          files: release.zip
+          files: WindowsKontrolMerkezi.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -56,7 +56,7 @@ jobs:
           version=${{ github.ref_name }}
           version=${version#v}
           # compute SHA256 of release artifact for integrity check
-          hash=$(powershell -Command "Get-FileHash release.zip -Algorithm SHA256 | Select-Object -ExpandProperty Hash")
+          hash=$(powershell -Command "Get-FileHash WindowsKontrolMerkezi.zip -Algorithm SHA256 | Select-Object -ExpandProperty Hash")
           jq --arg v "$version" --arg h "$hash" '.version=$v | .downloadUrl="https://github.com/'"${{ github.repository }}"'/releases/download/v'$version'/WindowsKontrolMerkezi.zip" | .hash=$h' version.json > new.json
           mv new.json version.json
           git config user.name "github-actions[bot]"
