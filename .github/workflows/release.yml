@@ -19,6 +19,12 @@ jobs:
       - name: Restore
         run: dotnet restore WindowsKontrolMerkezi/WindowsKontrolMerkezi.csproj
 
+      - name: Clean intermediate files
+        run: |
+          Remove-Item -Recurse -Force WindowsKontrolMerkezi/obj_isolated -ErrorAction SilentlyContinue
+          Remove-Item -Recurse -Force WindowsKontrolMerkezi/obj -ErrorAction SilentlyContinue
+        shell: pwsh
+
       - name: Build
         run: dotnet build WindowsKontrolMerkezi/WindowsKontrolMerkezi.csproj -c Release
 
