@@ -53,7 +53,8 @@ jobs:
 
       - name: Update manifest
         run: |
-          version=${{ github.ref_name#v }}
+          version=${{ github.ref_name }}
+          version=${version#v}
           # compute SHA256 of release artifact for integrity check
           hash=$(powershell -Command "Get-FileHash release.zip -Algorithm SHA256 | Select-Object -ExpandProperty Hash")
           jq --arg v "$version" --arg h "$hash" '.version=$v | .downloadUrl="https://github.com/'"${{ github.repository }}"'/releases/download/v'$version'/WindowsKontrolMerkezi.zip" | .hash=$h' version.json > new.json
