@@ -1,5 +1,5 @@
 ﻿WindowsKontrolMerkezi
-1.3.9
+1.4.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;RELEASE;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_
 C:\Users\ilkn4\Documents\32\WindowsKontrolMerkezi\App.xaml
 71525471707
 
-29-1121837971
+41-1648991622
 19987560701
 DetailChartWindow.xaml;MainWindow.xaml;NotificationsWindow.xaml;Pages\AyarlarPage.xaml;Pages\ModlarPage.xaml;Pages\PanelPage.xaml;VersionCodesWindow.xaml;
 
-False
+True
 

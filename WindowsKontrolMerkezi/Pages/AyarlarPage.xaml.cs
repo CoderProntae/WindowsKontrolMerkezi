@@ -9,6 +9,8 @@ namespace WindowsKontrolMerkezi.Pages;
 public partial class AyarlarPage
 {
     private string? _downloadUrl;
+    private string? _latestVersion; // version string returned from last check
+    private string? _latestHash; // expected SHA256 of download
 
     public AyarlarPage()
     {
@@ -39,7 +41,7 @@ public partial class AyarlarPage
         
         ChkStartWithWindows.IsChecked = settings.StartWithWindows;
         ChkCheckUpdatesAtStartup.IsChecked = settings.CheckUpdatesAtStartup;
-        ChkNotifStartup.IsChecked = settings.OpenNotificationPanelAtStartup;
+        ChkOpenNotifAtStart.IsChecked = settings.OpenNotificationPanelAtStartup;
         ChkHideNotifToggle.IsChecked = settings.HideNotificationToggleButton;
         SldOpacity.Value = settings.WindowOpacity;
         TbOpacityVal.Text = $"%{(int)(settings.WindowOpacity * 100)}";
@@ -75,9 +77,10 @@ public partial class AyarlarPage
         }
     }
 
-    private void ChkNotifStartup_Changed(object sender, RoutedEventArgs e)
+    private void ChkOpenNotifAtStart_Changed(object sender, RoutedEventArgs e)
     {
-        var on = ChkNotifStartup.IsChecked == true;
+        if (ChkOpenNotifAtStart == null) return;
+        var on = ChkOpenNotifAtStart.IsChecked == true;
         var s = AppSettingsService.Load();
         s.OpenNotificationPanelAtStartup = on;
         AppSettingsService.Save(s);
@@ -202,6 +205,8 @@ public partial class AyarlarPage
         {
             var r = await UpdateService.CheckForUpdatesAsync();
             _downloadUrl = r.DownloadUrl;
+            _latestVersion = r.Latest;
+            _latestHash = r.Hash;
             UpdateResultPanel.Visibility = Visibility.Visible;
             if (r.HasUpdate)
             {
@@ -235,10 +240,9 @@ public partial class AyarlarPage
         BtnUpdate.Content = "İndiriliyor...";
         try
         {
-            var ok = await UpdateService.DownloadAndRunUpdateAsync(_downloadUrl);
+            var ok = await UpdateService.DownloadAndRunUpdateAsync(_downloadUrl, _latestVersion, _latestHash);
             if (ok)
             {
-                MessageBox.Show("Güncelleme indirildi ve kurulum başlatıldı. Uygulama kapanacak; kurulumu tamamlayın.", "Güncelleme", MessageBoxButton.OK, MessageBoxImage.Information);
                 Application.Current.Shutdown();
             }
             else

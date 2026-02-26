@@ -1,0 +1,66 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore WindowsKontrolMerkezi/WindowsKontrolMerkezi.csproj
+
+      - name: Build
+        run: dotnet build WindowsKontrolMerkezi/WindowsKontrolMerkezi.csproj -c Release
+
+      - name: Publish self-contained
+        run: |
+          dotnet publish WindowsKontrolMerkezi/WindowsKontrolMerkezi.csproj -c Release -r win-x64 --self-contained -o publish
+
+      - name: Create zip
+        run: |
+          powershell -Command "Compress-Archive -Path publish/* -DestinationPath release.zip"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: |
+            Release ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: WindowsKontrolMerkezi.zip
+          body: |
+            Binary release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # the action above uploads the release asset automatically if you use `files` input
+
+      - name: Update manifest
+        run: |
+          version=${{ github.ref_name#v }}
+          # compute SHA256 of release artifact for integrity check
+          hash=$(powershell -Command "Get-FileHash release.zip -Algorithm SHA256 | Select-Object -ExpandProperty Hash")
+          jq --arg v "$version" --arg h "$hash" '.version=$v | .downloadUrl="https://github.com/'"${{ github.repository }}"'/releases/download/v'$version'/WindowsKontrolMerkezi.zip" | .hash=$h' version.json > new.json
+          mv new.json version.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add version.json
+          git commit -m "Update version.json for $version"
+          git push
+

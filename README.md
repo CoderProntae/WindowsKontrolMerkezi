@@ -32,6 +32,14 @@ dotnet build WindowsKontrolMerkezi\WindowsKontrolMerkezi.csproj
 dotnet publish WindowsKontrolMerkezi\WindowsKontrolMerkezi.csproj -c Release -r win-x64 --self-contained
 ```
 
+**GitHub üzerinden otomatik yayın**
+
+1. `git commit` ile değişiklikleri kaydet.
+2. `git tag vX.Y.Z` şeklinde yeni sürüm etiketi oluşturun.
+3. `git push && git push --tags` ile ana dalı ve etiketi gönderin.
+
+Action workflow (`.github/workflows/release.yml`) tetiklenecek; derleme yapılacak, ZIP paketlenecek ve GitHub Release oluşturulacak. Manifest (`version.json`) da hash ile birlikte güncellenecek ve otomatik olarak repo'ya itilecektir.
+
 Çıktı: `WindowsKontrolMerkezi\bin\Release\net8.0-windows\win-x64\publish\` — bu klasörde **WindowsKontrolMerkezi.exe** bulunur. Bu exe ile çalıştırdığında:
 
 - **Windows ile başlat** (Ayarlar > Özelleştirme) exe yolunu kayıt defterine yazar; böylece Windows açılışında uygulama exe ile başlar.
@@ -39,7 +47,7 @@ dotnet publish WindowsKontrolMerkezi\WindowsKontrolMerkezi.csproj -c Release -r 
 
 ## Güncelleme mantığı
 
-1. **Sürüm**: `WindowsKontrolMerkezi.csproj` içindeki `<Version>1.0.0</Version>` tek kaynaktır.
+1. **Sürüm**: Teorik olarak `WindowsKontrolMerkezi.csproj` içindeki `<Version>` kullanılır ancak proje artık derleme sırasında kök dizindeki `version.txt` dosyasını okuyor; bu yüzden `version.txt` ana kaynak olarak düşünülmelidir.
 2. **Güncelleme kontrolü**: `Services\UpdateService.cs` içindeki `ManifestUrl` adresinden bir JSON indirilir. Örnek:
 
 ```json
@@ -47,11 +55,14 @@ dotnet publish WindowsKontrolMerkezi\WindowsKontrolMerkezi.csproj -c Release -r 
   "version": "1.0.1",
   "notes": "Hata düzeltmeleri.",
   "changelog": "[1.0.1] Hata düzeltmeleri",
-  "downloadUrl": "https://example.com/WindowsKontrolMerkezi-1.0.1.zip"
+  "downloadUrl": "https://example.com/WindowsKontrolMerkezi-1.0.1.zip",
+  "hash": "<SHA256 of zip>"
 }
 ```
 
-`version` mevcut sürümden büyükse uygulama “güncelleme var” der ve isteğe bağlı `downloadUrl` ile güncelleme uyarısı verir. Ayarlar’da **Güncelle (indir ve kur)** ile dosya indirilir, çalıştırılır ve uygulama kapanır; **Açılışta güncelleme kontrolü** açılıp kapatılabilir.
+`version` mevcut sürümden büyükse uygulama “güncelleme var” der ve isteğe bağlı `downloadUrl` ile güncelleme uyarısı verir. İndirme sırasında eğer `hash` sağlanmışsa dosya yazılmadan önce hash kontrolü yapılır; uyuşmuyorsa işlem iptal edilir. Ayarlar’da **Güncelle (indir ve kur)** ile dosya indirilir, çalıştırılır ve uygulama kapanır; güncelleme betiği yeni sürümü `version.txt` dosyasına yazar, böylece yeniden açıldığında eski sürüm tekrardan bulunmaz. **Açılışta güncelleme kontrolü** açılıp kapatılabilir.
+
+`version` mevcut sürümden büyükse uygulama “güncelleme var” der ve isteğe bağlı `downloadUrl` ile güncelleme uyarısı verir. Ayarlar’da **Güncelle (indir ve kur)** ile dosya indirilir, çalıştırılır ve uygulama kapanır; güncelleme betiği yeni sürümü `version.txt` dosyasına yazar, böylece yeniden açıldığında eski sürüm tekrardan bulunmaz. **Açılışta güncelleme kontrolü** açılıp kapatılabilir.
 
 ## Değişiklik günlüğü
 

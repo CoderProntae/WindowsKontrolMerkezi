@@ -6,7 +6,7 @@ using WindowsKontrolMerkezi;
 namespace WindowsKontrolMerkezi.Services;
 
 public record UpdateFeature(string Name, string Version);
-public record UpdateResult(bool HasUpdate, string Current, string Latest, string Notes, string Channel, string? DownloadUrl, List<UpdateFeature> Features);
+public record UpdateResult(bool HasUpdate, string Current, string Latest, string Notes, string Channel, string? DownloadUrl, string? Hash, List<UpdateFeature> Features);
 
 public static class UpdateService
 {
@@ -52,6 +52,7 @@ public static class UpdateService
             var notes = root.TryGetProperty("notes", out var n) ? n.GetString() ?? "" : (root.TryGetProperty("changelog", out var c) ? c.GetString() ?? "" : "");
             var url = root.TryGetProperty("downloadUrl", out var u) ? u.GetString() : null;
             var channel = root.TryGetProperty("channel", out var ch) ? ch.GetString() ?? "önerilir" : "önerilir";
+            var hash = root.TryGetProperty("hash", out var h) ? h.GetString() : null;
             
             var featuresList = new List<UpdateFeature>();
             if (root.TryGetProperty("features", out var feats) && feats.ValueKind == System.Text.Json.JsonValueKind.Array)
@@ -79,18 +80,18 @@ public static class UpdateService
                 );
             }
 
-            return new UpdateResult(hasUpdate, current, latest, notes ?? "", channel, url, featuresList);
+            return new UpdateResult(hasUpdate, current, latest, notes ?? "", channel, url, hash, featuresList);
         }
         catch
         {
-            return new UpdateResult(false, current, current, "", "önerilir", null, new List<UpdateFeature>());
+            return new UpdateResult(false, current, current, "", "önerilir", null, null, new List<UpdateFeature>());
         }
     }
 
     /// <summary>Güncelleme dosyasını indirir, çalıştırır. Uygulama hemen kapatılmalı ki kurulum devam etsin.</summary>
     /// <returns>İndirilip çalıştırıldıysa true; hata varsa false.</returns>
     /// <summary>Güncelleme dosyasını indirir, yer değiştirme scripti oluşturur ve çalıştırır.</summary>
-    public static async Task<bool> DownloadAndRunUpdateAsync(string downloadUrl)
+    public static async Task<bool> DownloadAndRunUpdateAsync(string downloadUrl, string? expectedVersion = null, string? expectedHash = null)
     {
         if (string.IsNullOrWhiteSpace(downloadUrl)) return false;
         try
@@ -110,7 +111,37 @@ public static class UpdateService
             {
                 client.Timeout = TimeSpan.FromMinutes(5);
                 var bytes = await client.GetByteArrayAsync(downloadUrl);
+
+                // verify downloaded bytes against expected hash if provided
+                if (!string.IsNullOrWhiteSpace(expectedHash))
+                {
+                    try
+                    {
+                        using var sha = System.Security.Cryptography.SHA256.Create();
+                        var computed = BitConverter.ToString(sha.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
+                        if (!string.Equals(computed, expectedHash.Replace(" ", "").ToLowerInvariant(), StringComparison.Ordinal))
+                        {
+                            // hash mismatch
+                            return false;
+                        }
+                    }
+                    catch
+                    {
+                        // ignore any hash check failure
+                    }
+                }
+
                 await File.WriteAllBytesAsync(updateFile, bytes);
+            }
+
+            // prepare optional command to write the new version into version.txt
+            string versionEcho = string.Empty;
+            if (!string.IsNullOrWhiteSpace(expectedVersion))
+            {
+                // escape any double-quotes that could break the batch file
+                var safeVer = expectedVersion.Replace("\"", "\"\"");
+                var versionPath = Path.Combine(appDir, "version.txt");
+                versionEcho = $"echo {safeVer} > \"{versionPath}\"\r\n";
             }
 
             // Logic switch based on extension
@@ -120,12 +151,13 @@ public static class UpdateService
                 // ZIP Update:
                 // 1. Wait for process to exit
                 // 2. Use PowerShell to extract (overwrite all)
-                // 3. Start exe
+                // 3. Optionally write version.txt
+                // 4. Start exe
                 script = $@"
 @echo off
 timeout /t 2 /nobreak > nul
 powershell -Command ""Expand-Archive -Path '{updateFile}' -DestinationPath '{appDir}' -Force""
-start """" ""{currentExe}""
+{versionEcho}start """" "{currentExe}"
 del ""{batchFile}""
 ";
             }
@@ -142,7 +174,7 @@ if exist ""{currentExe}"" (
     goto retry
 )
 if exist ""version.txt"" del /f /q ""version.txt""
-move /y ""{updateFile}"" ""{currentExe}""
+{versionEcho}move /y ""{updateFile}"" "{currentExe}"
 start """" ""{currentExe}""
 del ""{batchFile}""
 ";

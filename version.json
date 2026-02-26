@@ -1,24 +1,10 @@
 {
-    "version": "1.4.0",
-    "channel": "önerilir",
-    "notes": "v1.4.0 (Self-Contained): .NET hatasını çözmek için tüm çalışma zamanı bileşenleri pakete dahil edildi. Bu sürüm her sistemde sorunsuz çalışır.",
-    "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/update.zip",
-    "features": [
-        {
-            "name": "Bildirim Butonu Yenilemesi",
-            "version": "1.2.3"
-        },
-        {
-            "name": "Canlı Saat/Tarih",
-            "version": "1.2.3"
-        },
-        {
-            "name": "Gelişmiş Mod Düzenleme",
-            "version": "1.2.3"
-        },
-        {
-            "name": "Halkalar Fixi",
-            "version": "1.2.3"
-        }
-    ]
+  "version": "1.4.0",
+  "notes": "",
+  "changelog": "",
+  "downloadUrl": "https://github.com/<owner>/<repo>/releases/download/v1.4.0/WindowsKontrolMerkezi.zip",
+  "channel": "önerilir",
+  "features": [
+    { "name": "Placeholder", "version": "1.4.0" }
+  ]
 }

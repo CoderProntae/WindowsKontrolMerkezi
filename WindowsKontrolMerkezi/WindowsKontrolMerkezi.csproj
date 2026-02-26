@@ -5,12 +5,24 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>WindowsKontrolMerkezi</AssemblyName>
     <RootNamespace>WindowsKontrolMerkezi</RootNamespace>
+    <!-- the canonical version is stored in version.txt; fall back to hardcoded if missing -->
     <Version>1.4.0</Version>
-    <AssemblyVersion>1.4.0</AssemblyVersion>
-    <FileVersion>1.4.0</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    
+    <!-- read version.txt into a property before build so that SDK tasks use it -->
+    <Target Name="ReadVersionText" BeforeTargets="GenerateAssemblyInfo">
+      <ReadLinesFromFile File="version.txt">
+        <Output TaskParameter="Lines" PropertyName="VersionFromFile" />
+      </ReadLinesFromFile>
+      <!-- take first non-empty line -->
+      <PropertyGroup>
+        <Version Condition="'$(VersionFromFile)' != ''">$(VersionFromFile)</Version>
+      </PropertyGroup>
+    </Target>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
