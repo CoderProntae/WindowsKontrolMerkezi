@@ -153,31 +153,29 @@ public static class UpdateService
                 // 2. Use PowerShell to extract (overwrite all)
                 // 3. Optionally write version.txt
                 // 4. Start exe
-                script = $@"
-@echo off
-timeout /t 2 /nobreak > nul
-powershell -Command ""Expand-Archive -Path '{updateFile}' -DestinationPath '{appDir}' -Force""
-{versionEcho}start """" "{currentExe}"
-del ""{batchFile}""
-";
+                script = "@echo off\n" +
+                    "timeout /t 2 /nobreak > nul\n" +
+                    $"powershell -Command \"Expand-Archive -Path '{updateFile}' -DestinationPath '{appDir}' -Force\"\n" +
+                    versionEcho +
+                    $"start \"\" \"{currentExe}\"\n" +
+                    $"del \"{batchFile}\"\n";
             }
             else
             {
                 // Legacy EXE Update
-                script = $@"
-@echo off
-timeout /t 2 /nobreak > nul
-:retry
-del /f /q ""{currentExe}""
-if exist ""{currentExe}"" (
-    timeout /t 1 /nobreak > nul
-    goto retry
-)
-if exist ""version.txt"" del /f /q ""version.txt""
-{versionEcho}move /y ""{updateFile}"" "{currentExe}"
-start """" ""{currentExe}""
-del ""{batchFile}""
-";
+                script = "@echo off\n" +
+                    "timeout /t 2 /nobreak > nul\n" +
+                    ":retry\n" +
+                    $"del /f /q \"{currentExe}\"\n" +
+                    $"if exist \"{currentExe}\" (\n" +
+                    "    timeout /t 1 /nobreak > nul\n" +
+                    "    goto retry\n" +
+                    ")\n" +
+                    "if exist \"version.txt\" del /f /q \"version.txt\"\n" +
+                    versionEcho +
+                    $"move /y \"{updateFile}\" \"{currentExe}\"\n" +
+                    $"start \"\" \"{currentExe}\"\n" +
+                    $"del \"{batchFile}\"\n";
             }
 
             await File.WriteAllTextAsync(batchFile, script);
