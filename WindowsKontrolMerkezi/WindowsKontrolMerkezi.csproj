@@ -12,19 +12,20 @@
     <InformationalVersion>$(Version)</InformationalVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    
-    <!-- read version.txt into a property before build so that SDK tasks use it -->
-    <Target Name="ReadVersionText" BeforeTargets="GenerateAssemblyInfo">
-      <ReadLinesFromFile File="version.txt">
-        <Output TaskParameter="Lines" PropertyName="VersionFromFile" />
-      </ReadLinesFromFile>
-      <!-- take first non-empty line -->
-      <PropertyGroup>
-        <Version Condition="'$(VersionFromFile)' != ''">$(VersionFromFile)</Version>
-      </PropertyGroup>
-    </Target>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
+
+  <!-- read version.txt into a property before build so that SDK tasks use it -->
+  <Target Name="ReadVersionText" BeforeTargets="GenerateAssemblyInfo">
+    <ReadLinesFromFile File="version.txt">
+      <Output TaskParameter="Lines" PropertyName="VersionFromFile" />
+    </ReadLinesFromFile>
+    <!-- take first non-empty line -->
+    <PropertyGroup>
+      <Version Condition="'$(VersionFromFile)' != ''">$(VersionFromFile)</Version>
+    </PropertyGroup>
+  </Target>
+
   <ItemGroup>
     <None Include="..\CHANGELOG.md" Link="CHANGELOG.md" CopyToOutputDirectory="PreserveNewest" />
     <None Include="version.txt" CopyToOutputDirectory="PreserveNewest" />
