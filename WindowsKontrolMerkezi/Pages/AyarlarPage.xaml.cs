@@ -24,8 +24,19 @@ public partial class AyarlarPage
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CHANGELOG.md");
         TbChangelog.Text = File.Exists(path) ? File.ReadAllText(path) : "CHANGELOG.md bulunamadı.";
 
-        // Load theme list
-        CmbTheme.ItemsSource = ThemeService.Themes;
+        // Load theme list with grouping (no ItemTemplate binding issues)
+        var groupedThemes = ThemeService.Themes
+            .Select(t => new { 
+                t.Id, 
+                t.Name, 
+                Group = t.Name.Contains("(Özel)") ? "Özel Temalar" : "Standart Temalar" 
+            })
+            .ToList();
+            
+        var view = System.Windows.Data.CollectionViewSource.GetDefaultView(groupedThemes);
+        view.GroupDescriptions.Add(new System.Windows.Data.PropertyGroupDescription("Group"));
+        
+        CmbTheme.ItemsSource = view;
         CmbTheme.DisplayMemberPath = "Name";
         CmbTheme.SelectedValuePath = "Id";
         
