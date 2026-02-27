@@ -26,26 +26,7 @@
           </Grid.ColumnDefinitions>
           
           <TextBlock Grid.Row="0" Grid.Column="0" Text="Tema" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center" Margin="0,0,0,8"/>
-          <ComboBox x:Name="CmbTheme" Grid.Row="0" Grid.Column="1" Margin="0,0,0,8" MinWidth="200" SelectionChanged="CmbTheme_SelectionChanged">
-            <!-- item template shows a color swatch + name -->
-            <ComboBox.ItemTemplate>
-              <DataTemplate>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                  <Rectangle Width="16" Height="16" Fill="{Binding Accent, Converter={StaticResource ColorToBrush}}" Stroke="{DynamicResource Border}" StrokeThickness="1" Margin="0,0,6,0" />
-                  <TextBlock Text="{Binding Name}" Foreground="{DynamicResource Text}" />
-                </StackPanel>
-              </DataTemplate>
-            </ComboBox.ItemTemplate>
-            <ComboBox.GroupStyle>
-              <GroupStyle>
-                <GroupStyle.HeaderTemplate>
-                  <DataTemplate>
-                    <TextBlock Text="{Binding Name}" Foreground="{DynamicResource Accent}" FontWeight="Bold" Margin="4,8,4,4"/>
-                  </DataTemplate>
-                </GroupStyle.HeaderTemplate>
-              </GroupStyle>
-            </ComboBox.GroupStyle>
-          </ComboBox>
+          <ComboBox x:Name="CmbTheme" Grid.Row="0" Grid.Column="1" Margin="0,0,0,8" MinWidth="200" SelectionChanged="CmbTheme_SelectionChanged"/>
           
           <TextBlock Grid.Row="1" Grid.Column="0" Text="Saydamlık" Foreground="{DynamicResource TextDim}" VerticalAlignment="Center" Margin="0,0,0,8"/>
           <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,8">
