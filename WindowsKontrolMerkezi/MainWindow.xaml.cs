@@ -57,7 +57,8 @@ public partial class MainWindow : Window
         BtnFloatingNotificationToggle.Visibility = settings.HideNotificationToggleButton ? Visibility.Collapsed : Visibility.Visible;
     }
 
-    private void ApplyBackground(string themeId)
+    // make public so other pages can refresh it when theme changes
+    public void ApplyBackground(string themeId)
     {
         var theme = ThemeService.Themes.FirstOrDefault(t => t.Id == themeId);
         if (theme?.BackgroundPath != null && File.Exists(theme.BackgroundPath))

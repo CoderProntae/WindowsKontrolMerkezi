@@ -99,6 +99,11 @@ public partial class AyarlarPage
         if (CmbTheme.SelectedValue is not string themeId) return;
         
         ThemeService.ApplyTheme(themeId);
+        // immediately update any window backgrounds too
+        if (Application.Current.MainWindow is MainWindow mw)
+        {
+            mw.ApplyBackground(themeId);
+        }
         var s = AppSettingsService.Load();
         s.ThemeId = themeId;
         AppSettingsService.Save(s);
