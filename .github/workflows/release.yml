@@ -36,9 +36,10 @@ jobs:
           dotnet publish WindowsKontrolMerkezi/WindowsKontrolMerkezi.csproj -c Release -r win-x64 --self-contained -o publish
 
       - name: Create zip
+        shell: pwsh
         run: |
-          Remove-Item WindowsKontrolMerkezi.zip -ErrorAction SilentlyContinue
-          Compress-Archive -Path publish/* -DestinationPath WindowsKontrolMerkezi.zip
+          if (Test-Path WindowsKontrolMerkezi.zip) { Remove-Item WindowsKontrolMerkezi.zip -Force }
+          Compress-Archive -Path publish/* -DestinationPath WindowsKontrolMerkezi.zip -Force
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
