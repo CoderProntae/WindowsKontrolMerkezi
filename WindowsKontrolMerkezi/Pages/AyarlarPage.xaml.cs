@@ -24,9 +24,14 @@ public partial class AyarlarPage
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CHANGELOG.md");
         TbChangelog.Text = File.Exists(path) ? File.ReadAllText(path) : "CHANGELOG.md bulunamadı.";
 
-        // Group themes for ComboBox
+        // Group themes for ComboBox - include all properties needed by ItemTemplate
         var groupedThemes = ThemeService.Themes
-            .Select(t => new { t.Id, t.Name, Group = t.Name.Contains("(Özel)") ? "Özel Temalar" : "Standart Temalar" })
+            .Select(t => new { 
+                t.Id, 
+                t.Name, 
+                t.Accent,  // For ColorToBrushConverter in ItemTemplate
+                Group = t.Name.Contains("(Özel)") ? "Özel Temalar" : "Standart Temalar" 
+            })
             .ToList();
             
         var view = System.Windows.Data.CollectionViewSource.GetDefaultView(groupedThemes);
