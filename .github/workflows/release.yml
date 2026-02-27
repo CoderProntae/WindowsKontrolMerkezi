@@ -37,7 +37,7 @@ jobs:
 
       - name: Create zip
         run: |
-          powershell -Command "Compress-Archive -Path publish/* -DestinationPath WindowsKontrolMerkezi.zip"
+          powershell -Command "Compress-Archive -Path publish/* -DestinationPath WindowsKontrolMerkezi.zip -Force"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
