@@ -58,6 +58,8 @@ public partial class MainWindow : Window
     }
 
     // make public so other pages can refresh it when theme changes
+    private static readonly Dictionary<string, System.Windows.Media.Imaging.BitmapImage> _bgCache = new();
+
     public void ApplyBackground(string themeId)
     {
         var theme = ThemeService.Themes.FirstOrDefault(t => t.Id == themeId);
@@ -65,7 +67,11 @@ public partial class MainWindow : Window
         {
             try
             {
-                var bitmap = new System.Windows.Media.Imaging.BitmapImage(new Uri(theme.BackgroundPath));
+                if (!_bgCache.TryGetValue(theme.BackgroundPath, out var bitmap))
+                {
+                    bitmap = new System.Windows.Media.Imaging.BitmapImage(new Uri(theme.BackgroundPath));
+                    _bgCache[theme.BackgroundPath] = bitmap;
+                }
                 ImgBackground.Source = bitmap;
                 ImgBackground.Visibility = Visibility.Visible;
             }

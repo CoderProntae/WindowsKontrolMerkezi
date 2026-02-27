@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.IO; // Added for Path.Combine
+using Microsoft.Win32; // for registry and SystemEvents
 
 namespace WindowsKontrolMerkezi.Services;
 
@@ -13,6 +14,12 @@ public record ThemeDef(string Id, string Name, Color Surface, Color Card, Color 
 public static class ThemeService
 {
     private const string ArtifactDir = @"C:\Users\ilkn4\.gemini\antigravity\brain\454b312a-ab14-4d26-931d-4b46d8c1ad8d";
+
+    // event fired when theme is applied (id parameter)
+    public static event Action<string>? ThemeChanged;
+
+    // cache for background images keyed by path
+    private static readonly Dictionary<string, System.Windows.Media.Imaging.BitmapImage> BackgroundCache = new();
 
     public static readonly ThemeDef[] Themes =
     {
@@ -55,6 +62,9 @@ public static class ThemeService
         {
             SetTitlebarMode(window, theme);
         }
+
+        // notify subscribers
+        ThemeChanged?.Invoke(theme.Id);
     }
 
     [DllImport("dwmapi.dll")]
@@ -83,5 +93,45 @@ public static class ThemeService
         // DWMWA_TEXT_COLOR = 36
         DwmSetWindowAttribute(hwnd, 35, ref captionColor, sizeof(int));
         DwmSetWindowAttribute(hwnd, 36, ref textColor, sizeof(int));
+    }
+
+    // ------------------ auto-sync support ------------------
+    // decide light/dark according to system or time
+    public static void InitializeAutoSync()
+    {
+        SystemEvents.UserPreferenceChanged += (s, e) =>
+        {
+            if (e.Category == UserPreferenceCategory.General || e.Category == UserPreferenceCategory.Color)
+            {
+                SyncToSystem();
+            }
+        };
+        SyncToSystem();
+    }
+
+    private static void SyncToSystem()
+    {
+        try
+        {
+            // check registry value for light theme
+            var useLight = Microsoft.Win32.Registry.GetValue(
+                "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                "AppsUseLightTheme", 1);
+            bool light = useLight is int iv && iv != 0;
+            string desired = light ? "light" : "dark";
+
+            // optionally time-based override: after 18 or before 6, use dark
+            var hour = DateTime.Now.Hour;
+            if (hour >= 18 || hour < 6) desired = "dark";
+
+            var settings = AppSettingsService.Load();
+            if (settings.ThemeId != desired)
+            {
+                settings.ThemeId = desired;
+                AppSettingsService.Save(settings);
+                ApplyTheme(desired);
+            }
+        }
+        catch { }
     }
 }

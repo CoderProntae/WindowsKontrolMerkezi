@@ -9,6 +9,17 @@ public partial class App : Application
     {
         base.OnStartup(e);
         var settings = AppSettingsService.Load();
+
+        // system/time auto-sync
+        ThemeService.InitializeAutoSync();
+
+        ThemeService.ThemeChanged += id =>
+        {
+            // if main window exists refresh background immediately
+            if (Application.Current.MainWindow is MainWindow mw)
+                mw.ApplyBackground(id);
+        };
+
         ThemeService.ApplyTheme(settings.ThemeId);
         if (settings.StartWithWindows != StartupService.IsEnabled())
             StartupService.SetEnabled(settings.StartWithWindows);
