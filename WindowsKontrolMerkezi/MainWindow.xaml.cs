@@ -91,6 +91,9 @@ public partial class MainWindow : Window
             "Panel" => "Pages/PanelPage.xaml",
             "Modlar" => "Pages/ModlarPage.xaml",
             "Ayarlar" => "Pages/AyarlarPage.xaml",
+            "Gpu" => "Pages/GpuMonitorPage.xaml",
+            "Network" => "Pages/NetworkMonitorPage.xaml",
+            "Health" => "Pages/HealthWidgetPage.xaml",
             _ => "Pages/PanelPage.xaml"
         };
         ContentFrame.Navigate(new Uri(uri, UriKind.Relative));

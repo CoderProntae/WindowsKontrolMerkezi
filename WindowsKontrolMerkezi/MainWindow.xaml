@@ -34,6 +34,9 @@
           <RadioButton x:Name="RbPanel" Content="Panel" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Panel"/>
           <RadioButton x:Name="RbModlar" Content="Modlar" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Modlar"/>
           <RadioButton x:Name="RbAyarlar" Content="Ayarlar" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Ayarlar"/>
+          <RadioButton x:Name="RbGpu" Content="GPU Monitörü" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Gpu"/>
+          <RadioButton x:Name="RbNetwork" Content="Ağ Monitörü" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Network"/>
+          <RadioButton x:Name="RbHealth" Content="Sistem Sağlığı" GroupName="Nav" Checked="OnNavChecked" Style="{StaticResource NavButton}" Tag="Health"/>
         </StackPanel>
         <Border Grid.Row="2" BorderBrush="{DynamicResource Border}" BorderThickness="0,1,0,0" Padding="0,12,0,0" Margin="0,12,0,0">
           <StackPanel>
