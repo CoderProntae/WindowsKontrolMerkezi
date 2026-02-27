@@ -7,32 +7,30 @@
 3. **Otomatik Tema Senkronizasyonu** - Windows sistem tercihi + saatli koyu mod (18:00-06:00)
 4. **Arka Plan Görüntüsü Önbellekleme** - BitmapImage tekrar yüklemesini önler
 5. **Tema Gruplandırması UI** - Standart/Özel temalar organize edildi
+6. **Sıcak Tema Yükleme (Hot Reload)** - Windows 11 tema değişince anında senkron
+7. **GPU Monitörü Service** - WMI üzerinden NVIDIA/AMD GPU kullanım % ve sıcaklığı
+8. **Network Monitörü Service** - Ağ adaptörleri, toplam bant genişliği, indirme/yükleme hızı
+9. **Sistem Sağlığı Raporu Service** - Disk, RAM, CPU kullanımı ve sıcaklığı, status boyama
 
 ---
 
 ## 📋 Planlanan Özellikler
 
 ### Yüksek Öncelik
-6. **Sıcak Tema Yükleme (Hot Reload)** - Windows 11 tema değiştiğinde anında senkron ol
-7. **Özel Tema Düzenleyicisi** - RGB picker, accent renk seçimi, arka plan upload
-8. **Tema Kayıt/Yükleme** - Özel temalar JSON olarak dışa aktar ve içe aktar
+10. **Tema Düzenleyicisi - UI** - Services'lerin UI sayfaları (GPU, Network, Health)
+11. **Sistem Tray (Sistem Tepsi)** - Küçültme/panelde görünme, hızlı tema değiştirme
+12. **Windows 11 Widgets** - Sistem sağlığı live tile widget
 
 ### Orta Öncelik  
-9. **Sistem Tray (Sistem Tepsi)** - Küçültme/panelde görünme, hızlı tema değiştirme
-10. **GPU Monitörü** - NVIDIA/AMD GPU kullanım yüzdesi ve sıcaklığı
-11. **Network Ayrıntıları** - Ağ adaptörleri, indirme/yükleme hızı real-time
-12. **Sağlık Kontrol Raporu** - Sistem sağlığı özeti (disk, RAM, CPU sıcaklığı)
-
-### Düşük Öncelik
-13. **Çok Dilli Dil Desteği İyileştirmesi** - Daha çok dil paketi
-14. **Tema Preview** - Değişiklik yapmadan önce görüntüleme
-15. **Performans İstatistikleri** - Tarihsel grafik (saatlik, günlük)
-16. **Widgets Desteği** - Windows 11 widgets'a entegrasyon
+13. **Tema Özelleştirme Panel** - RGB picker, accent renk seçimi, arka plan upload
+14. **Tema Kayıt/Yükleme** - Özel temalar JSON olarak dışa aktar ve içe aktar
+15. **Çok Dilli Dil Desteği İyileştirmesi** - Daha çok dil paketi
 
 ---
 
 ## 🔄 Devam Eden Çalışmalar
 
+- **UI Sayfaları** - GPU, Network, Health monitoring pages (Services mevcut, Pages WIP)
 - **Hata Düzeltmeleri** - Issue'lar geldikçe çözülüyor
 - **UI Polishing** - Arayüz iyileştirmeleri
 - **Performans Optimizasyonu** - Bellek/CPU kullanımı azaltma
