@@ -6,7 +6,7 @@ namespace WindowsKontrolMerkezi;
 /// <summary>Sürüm: önce version.txt (exe yanında), yoksa assembly, yoksa sabit. version.txt = tek gerçek kaynak.</summary>
 public static class VersionInfo
 {
-    public const string FallbackVersion = "1.4.72";
+    public const string FallbackVersion = "1.5.0";
 
     private static string ReadVersionFromFile()
     {
