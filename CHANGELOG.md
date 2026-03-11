@@ -1,5 +1,14 @@
 # Değişiklik Günlüğü (CHANGELOG)
 
+## [1.4.1] - 2025-02-23
+### Eklenenler
+- **Self-Contained Paket**: .NET Runtime bağımlılığı kaldırılarak uygulamanın her sistemde sorunsuz açılması sağlandı. (Boyut arttı, kararlılık tavan yaptı) 🚀
+- **Full Paket Senkronizasyonu**: Tekli EXE yerine tüm proje dosyalarının (`CHANGELOG.md` vb.) senkronize edildiği ZIP tabanlı güncelleme sistemine geçildi.
+
+### Düzeltmeler
+- **Derleme Fix**: `MainWindow.xaml` ve `AyarlarPage` üzerindeki derlemeyi engelleyen XML ve C# hataları giderildi.
+- **Update Flow**: Güncelleme sonrası çıkan onay kutusu kaldırılarak süreç daha akıcı hale getirildi.
+
 ## [1.4.0] - 2025-02-23
 ### Eklenenler
 - **Bağımsız Rahatsız Etme (v2)**: "Odak Yardımı" yerine uygulama içi sessiz bildirim sistemi getirildi. (Win11'de devre dışı)

@@ -1,14 +1,16 @@
 {
-  "version": "1.4.7",
-  "notes": "",
-  "changelog": "",
-  "downloadUrl": "https://github.com/CoderProntae/WindowsKontrolMerkezi/releases/download/v1.4.7/WindowsKontrolMerkezi.zip",
+  "version": "1.4.73",
+  "notes": "v1.4.72 Yenilikleri:\n- Gamer Edition - Canavar Modu 👹\n- Dış Bildirim Yakalama Sistemi 🦾\n- Sürüm Kodları Sadeleştirme",
   "channel": "önerilir",
+  "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/update.zip",
   "features": [
     {
-      "name": "Placeholder",
-      "version": "1.4.0"
+      "name": "Canavar Modu",
+      "version": "1.4.72"
+    },
+    {
+      "name": "Dış Bildirim Birleştirme",
+      "version": "1.4.72"
     }
-  ],
-  "hash": ""
+  ]
 }
