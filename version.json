@@ -1,16 +1,20 @@
 {
-  "version": "1.4.73",
-  "notes": "v1.4.72 Yenilikleri:\n- Gamer Edition - Canavar Modu 👹\n- Dış Bildirim Yakalama Sistemi 🦾\n- Sürüm Kodları Sadeleştirme",
+  "version": "1.5.0",
+  "notes": "v1.5.0 - GAMER EDITION & SYSTEM NOTIFICATIONS\n\n- Oyuncu Kiti (Gamer Kit) 🎮\n- 👹 Canavar (Monster) Teması\n- Dış Bildirimleri Yakalama Sistemi 🦾\n- UI ve Performans İyileştirmeleri",
   "channel": "önerilir",
-  "downloadUrl": "https://raw.githubusercontent.com/CoderProntae/WindowsKontrolMerkezi/main/update.zip",
+  "downloadUrl": "https://github.com/CoderProntae/WindowsKontrolMerkezi/raw/main/WindowsKontrolMerkezi.zip",
   "features": [
     {
-      "name": "Canavar Modu",
-      "version": "1.4.72"
+      "name": "Gamer Edition Foundation",
+      "version": "1.5.0"
     },
     {
-      "name": "Dış Bildirim Birleştirme",
-      "version": "1.4.72"
+      "name": "Outside Notifications Listener",
+      "version": "1.5.0"
+    },
+    {
+      "name": "Monster UI Theme",
+      "version": "1.5.0"
     }
   ]
 }
