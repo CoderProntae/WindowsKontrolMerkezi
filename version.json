@@ -1,20 +1,16 @@
 {
-  "version": "1.5.01",
-  "notes": "v1.5.01 - GAMER EDITION & SYSTEM NOTIFICATIONS\n\n- Oyuncu Kiti (Gamer Kit) 🎮\n- 👹 Canavar (Monster) Teması\n- Dış Bildirimleri Yakalama Sistemi 🦾\n- UI ve Performans İyileştirmeleri",
+  "version": "1.5.02",
+  "notes": "v1.5.02 - GAMER EDITION & SYSTEM NOTIFICATIONS (FINAL)\n\n- Oyuncu Kiti (Gamer Kit) 🎮\n- 👹 Canavar (Monster) Teması\n- Dış Bildirimleri Yakalama Sistemi 🦾\n- UI ve Performans İyileştirmeleri",
   "channel": "önerilir",
   "downloadUrl": "https://github.com/CoderProntae/WindowsKontrolMerkezi/raw/main/WindowsKontrolMerkezi.zip",
   "features": [
     {
       "name": "Gamer Edition Foundation",
-      "version": "1.5.01"
+      "version": "1.5.02"
     },
     {
       "name": "Outside Notifications Listener",
-      "version": "1.5.01"
-    },
-    {
-      "name": "Monster UI Theme",
-      "version": "1.5.01"
+      "version": "1.5.02"
     }
   ]
 }

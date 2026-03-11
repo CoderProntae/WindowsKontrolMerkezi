@@ -63,9 +63,19 @@
 
 ---
 
-## [1.3.1] - 2025-02-23
-### Eklenenler
-- Bildirim geçmişi kapalıyken saklama süresi slider'ı dinamik olarak saydamlaşır.
+## [1.5.02] - 2025-03-11
+### Added
+- Gamer Edition (Oyuncu Kiti) desteği.
+- G[Sürüm] sürüm kodlaması (Gamer Edition için).
+- 👹 Canavar (Monster) UI Teması.
+- Windows Dış Bildirim Yakalama Sistemi (SystemNotificationListener).
+- Proje WinRT (Windows SDK) entegrasyonu.
+
+## [1.4.73] - 2025-03-11
+### Added
+- Performans iyileştirmeleri ve küçük hata gidermeleri.
+
+## [1.4.72] - 2025-03-11
 - Yan menü butonlarına Scale animasyonları eklendi.
 
 ---
