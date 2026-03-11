@@ -1,16 +1,16 @@
 {
-  "version": "1.5.02",
-  "notes": "v1.5.02 - GAMER EDITION & SYSTEM NOTIFICATIONS (FINAL)\n\n- Oyuncu Kiti (Gamer Kit) 🎮\n- 👹 Canavar (Monster) Teması\n- Dış Bildirimleri Yakalama Sistemi 🦾\n- UI ve Performans İyileştirmeleri",
+  "version": "1.5.03",
+  "notes": "v1.5.03 - HOTFIX: Ayarlar Sayfası Çökme Sorunu Giderildi 🛠️\n\n- Ayarlar sayfasındaki XAML hatası düzeltildi.\n- Gamer Edition - Canavar Modu 👹\n- Dış Bildirim Yakalama Sistemi 🦾",
   "channel": "önerilir",
   "downloadUrl": "https://github.com/CoderProntae/WindowsKontrolMerkezi/raw/main/WindowsKontrolMerkezi.zip",
   "features": [
     {
       "name": "Gamer Edition Foundation",
-      "version": "1.5.02"
+      "version": "1.5.03"
     },
     {
       "name": "Outside Notifications Listener",
-      "version": "1.5.02"
+      "version": "1.5.03"
     }
   ]
 }

@@ -63,6 +63,10 @@
 
 ---
 
+## [1.5.03] - 2025-03-11
+### Fixed
+- Ayarlar sayfası açılırken oluşan XAML ayrıştırma hatası giderildi. 🛠️
+
 ## [1.5.02] - 2025-03-11
 ### Added
 - Gamer Edition (Oyuncu Kiti) desteği.
