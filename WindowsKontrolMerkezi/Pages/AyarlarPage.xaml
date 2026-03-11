@@ -61,6 +61,25 @@
         </Grid>
       </StackPanel>
     </Border>
+1: 
+    <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
+      <StackPanel>
+        <TextBlock Text="Wintak R Gamer Kit 🎮" Foreground="{DynamicResource Accent}" FontSize="13" FontWeight="Bold" Margin="0,0,0,12"/>
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <TextBlock Text="Oyuncu Modunu Aktifleştir" Foreground="{DynamicResource Text}" FontWeight="Medium"/>
+            <TextBlock Text="Uygulamayı oyuncu odaklı bir canavara dönüştürür. Özel sürüm kodu ve performans ayarları aktifleşir." 
+                       Foreground="{DynamicResource TextDim}" FontSize="10" TextWrapping="Wrap" Margin="0,4,16,0"/>
+          </StackPanel>
+          <CheckBox x:Name="ChkGamerMode" Grid.Column="1" Style="{StaticResource {x:Type CheckBox}}" VerticalAlignment="Center"
+                    Checked="ChkGamerMode_Changed" Unchecked="ChkGamerMode_Changed"/>
+        </Grid>
+      </StackPanel>
+    </Border>
 
     <Border Background="{DynamicResource Card}" BorderBrush="{DynamicResource Border}" BorderThickness="1" CornerRadius="12" Padding="20" Margin="0,0,0,12">
       <StackPanel>

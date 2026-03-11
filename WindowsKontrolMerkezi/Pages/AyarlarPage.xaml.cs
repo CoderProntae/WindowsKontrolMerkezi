@@ -47,6 +47,7 @@ public partial class AyarlarPage
         ChkCheckUpdatesAtStartup.IsChecked = settings.CheckUpdatesAtStartup;
         ChkOpenNotifAtStart.IsChecked = settings.OpenNotificationPanelAtStartup;
         ChkHideNotifToggle.IsChecked = settings.HideNotificationToggleButton;
+        ChkGamerMode.IsChecked = settings.Edition == AppEdition.Gamer;
         SldOpacity.Value = settings.WindowOpacity;
         TbOpacityVal.Text = $"%{(int)(settings.WindowOpacity * 100)}";
         
@@ -88,6 +89,35 @@ public partial class AyarlarPage
         var s = AppSettingsService.Load();
         s.OpenNotificationPanelAtStartup = on;
         AppSettingsService.Save(s);
+    }
+
+    private void ChkGamerMode_Changed(object sender, RoutedEventArgs e)
+    {
+        if (ChkGamerMode == null) return;
+        var isGamer = ChkGamerMode.IsChecked == true;
+        var s = AppSettingsService.Load();
+        
+        // Save current theme before switching if enabling gamer
+        if (isGamer && s.Edition != AppEdition.Gamer)
+        {
+            // Transitioning to Gamer
+            s.ThemeId = "monster"; 
+        }
+        else if (!isGamer && s.Edition == AppEdition.Gamer)
+        {
+            // Transitioning back to Main
+            s.ThemeId = "dark";
+        }
+
+        s.Edition = isGamer ? AppEdition.Gamer : AppEdition.Main;
+        AppSettingsService.Save(s);
+        
+        // Apply theme and refresh UI
+        ThemeService.ApplyTheme(s.ThemeId);
+        CmbTheme.SelectedValue = s.ThemeId;
+        
+        // Refresh version text to show G prefix
+        TbVersion.Text = "Mevcut sürüm: " + VersionInfo.DisplayVersion;
     }
 
     private void UpdateStartupHint()

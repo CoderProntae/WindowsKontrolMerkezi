@@ -25,6 +25,9 @@ public partial class App : Application
             StartupService.SetEnabled(settings.StartWithWindows);
         if (settings.CheckUpdatesAtStartup)
             CheckUpdatesAtStartupAsync();
+
+        // v1.4.72 Outside Notifications
+        _ = SystemNotificationListenerService.InitializeAsync();
     }
 
     private static async void CheckUpdatesAtStartupAsync()

@@ -32,6 +32,7 @@ public static class ThemeService
         new("fish", "🐠 Balıklar (Özel)", ColorFromHex("#041B2D"), ColorFromHex("#062841"), ColorFromHex("#093A5E"), ColorFromHex("#093A5E"), ColorFromHex("#0D4D7A"), ColorFromHex("#00D2FF"), ColorFromHex("#0095B6"), ColorFromHex("#E0F7FA"), ColorFromHex("#81D4FA"), true, Path.Combine(ArtifactDir, "fish_theme_background_1771796077793.png")),
         new("lava", "🌋 Lav (Özel)", ColorFromHex("#120000"), ColorFromHex("#1A0000"), ColorFromHex("#2A0000"), ColorFromHex("#2A0000"), ColorFromHex("#3A0000"), ColorFromHex("#FF4500"), ColorFromHex("#B22222"), ColorFromHex("#FFF5F5"), ColorFromHex("#FFBABA"), true, Path.Combine(ArtifactDir, "lava_theme_background_1771796093605.png")),
         new("sunset", "🌅 Gün Batımı (Özel)", ColorFromHex("#1A0B2E"), ColorFromHex("#2D144A"), ColorFromHex("#4A1F6E"), ColorFromHex("#4A1F6E"), ColorFromHex("#632B94"), ColorFromHex("#FF7E5F"), ColorFromHex("#FEB47B"), ColorFromHex("#FFF1F1"), ColorFromHex("#FFD1D1"), true),
+        new("monster", "👹 Canavar (Gamer)", ColorFromHex("#000000"), ColorFromHex("#0A0A0A"), ColorFromHex("#151515"), ColorFromHex("#202020"), ColorFromHex("#303030"), ColorFromHex("#FF003C"), ColorFromHex("#80001E"), ColorFromHex("#FFFFFF"), ColorFromHex("#808080"), true),
     };
 
     private static Color ColorFromHex(string hex)

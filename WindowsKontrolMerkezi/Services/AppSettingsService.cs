@@ -23,6 +23,15 @@ public class AppSettings
 
     // v1.4.0 Features
     public bool HideNotificationToggleButton { get; set; } = false;
+
+    // v1.4.72 Gamer Edition Foundation
+    public AppEdition Edition { get; set; } = AppEdition.Main;
+}
+
+public enum AppEdition
+{
+    Main,
+    Gamer
 }
 
 public static class AppSettingsService
